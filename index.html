@@ -61,6 +61,32 @@
     .caret{ width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid var(--ink); }
 
     .contact-icons{ display:flex; align-items:center; gap:12px; }
+
+    .contact-panel{
+      position:absolute;
+      top:100%;
+      left:0;
+      margin-top:8px;
+      background:#ffffff;
+      border:1px solid var(--border);
+      border-radius:8px;
+      padding:8px 0;
+      min-width:220px;
+      display:none;
+      flex-direction:column;
+      z-index:50;
+    }
+
+    .contact-panel a{
+      padding:8px 12px;
+      text-decoration:none;
+      color:var(--ink);
+      font-size:14px;
+    }
+
+    .contact-panel a:hover{ background:#f5f5f5; }
+
+    .contact-cluster.open .contact-panel{ display:flex; }
     .icon-link{ line-height:1; display:inline-flex; color:var(--ink); }
     .icon-link svg{ width:22px; height:22px; display:block; }
 
@@ -138,6 +164,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13l8-7V6H4zm0 12h16V8l-8 7-8-7v10z"/></svg>
           </a>
         </div>
+
+        <!-- Contact dropdown panel -->
+        <div class="contact-panel">
+          <a href="tel:+13475418555">+1 (347) 541‑8555</a>
+          <a href="mailto:info@cloth-collective.com">info@cloth-collective.com</a>
+        </div>
       </div>
 
       <!-- Socials -->
@@ -166,5 +198,20 @@
     </section>
   </main>
 
+  <script>
+    const toggle = document.querySelector('.contact-label-btn');
+    const cluster = document.querySelector('.contact-cluster');
+
+    if (toggle && cluster) {
+      toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        cluster.classList.toggle('open');
+      });
+
+      document.addEventListener('click', () => {
+        cluster.classList.remove('open');
+      });
+    }
+  </script>
 </body>
 </html>
