@@ -2,216 +2,224 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Cloth Collective Studios</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MISFIRE 000 — Cloth Collective</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Fonts (kept from marketplace) -->
+  <!-- LIBRE BASKERVILLE ITALIC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#ffffff;
-      --ink:#000000;
-      --muted:#666666;
-      --border:#e6e6e6;
+    * { box-sizing: border-box; }
+
+    body {
+      background: #0e0e0e;
+      color: #f2f2f2;
+      margin: 0;
+      font-family: "Libre Baskerville", serif;
+      font-style: italic;
+
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    *{ box-sizing:border-box }
-
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--ink);
-      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px 72px; /* tighter */
+      text-align: center;
     }
 
-    /* Header */
-    header{
-      position:sticky;
-      top:0;
-      z-index:20;
-      background:#ffffff;
-      border-bottom:1px solid var(--border);
-      height:64px;
+    /* MANIFESTO */
+    .manifesto {
+      font-size: 0.9rem;
+      line-height: 1.55;
+      opacity: 0.82;
+      margin-bottom: 22px; /* tighter */
     }
 
-    .bar{
-      max-width:1120px;
-      margin:0 auto;
-      padding:14px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
+    /* PRODUCT */
+    .image-placeholder {
+      width: 100%;
+      height: 380px; /* tighter */
+      border: 1px solid rgba(255,255,255,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      opacity: 0.55;
     }
 
-    .contact-cluster{ display:flex; align-items:center; gap:12px; position:relative; }
-
-    .contact-label-btn{
-      appearance:none; background:transparent; border:0; color:var(--ink);
-      font-family:'Inter', sans-serif; font-weight:500; letter-spacing:.4px;
-      font-size:13px; text-transform:uppercase; display:inline-flex;
-      align-items:center; gap:6px; cursor:pointer; padding:6px 8px; border-radius:8px;
+    .fit-note {
+      font-size: 0.7rem;
+      letter-spacing: 0.8px;
+      opacity: 0.5;
+      margin-bottom: 22px;
     }
 
-    .caret{ width:0; height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid var(--ink); }
-
-    .contact-icons{ display:flex; align-items:center; gap:12px; }
-
-    .contact-panel{
-      position:absolute;
-      top:100%;
-      left:0;
-      margin-top:8px;
-      background:#ffffff;
-      border:1px solid var(--border);
-      border-radius:8px;
-      padding:8px 0;
-      min-width:220px;
-      display:none;
-      flex-direction:column;
-      z-index:50;
+    .price {
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
     }
 
-    .contact-panel a{
-      padding:8px 12px;
-      text-decoration:none;
-      color:var(--ink);
-      font-size:14px;
+    /* BUTTONS = NON ITALIC */
+    .buy-btn,
+    .size-select button {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      text-transform: uppercase;
     }
 
-    .contact-panel a:hover{ background:#f5f5f5; }
-
-    .contact-cluster.open .contact-panel{ display:flex; }
-    .icon-link{ line-height:1; display:inline-flex; color:var(--ink); }
-    .icon-link svg{ width:22px; height:22px; display:block; }
-
-    .social{ display:flex; align-items:center; gap:12px; }
-    .follow-label{
-      color:var(--ink); font-family:'Inter', sans-serif; font-weight:500;
-      letter-spacing:.4px; font-size:13px; text-transform:uppercase;
-    }
-    .social a{ color:var(--ink); display:inline-flex; }
-    .social a svg{ width:22px; height:22px; display:block; }
-
-    /* Hero */
-    .hero{
-      min-height:calc(100vh - 64px);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding:40px 20px;
+    .buy-btn {
+      display: inline-block;
+      padding: 12px 42px;
+      border: 1px solid rgba(255,255,255,0.8);
+      color: #f2f2f2;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
+      transition: all 0.2s ease;
     }
 
-    .hero-title{
-      font-family:'Playfair Display', serif;
-      font-size:clamp(64px, 10vw, 120px);
-      font-weight:400;
-      margin:0;
-      letter-spacing:0.5px;
+    .buy-btn:hover {
+      background: #f2f2f2;
+      color: #0e0e0e;
     }
 
-    .hero-meta{
-      font-size:12px;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:16px;
+    .shipping-note {
+      font-size: 0.75rem;
+      letter-spacing: 0.8px;
+      opacity: 0.55;
+      margin-bottom: 26px;
     }
 
-    .hero-sub{
-      margin-top:14px;
-      font-size:14px;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      color:var(--muted);
+    .size-select {
+      display: none;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
-    .hero-link{
-      margin-top:32px;
-      font-size:14px;
-      letter-spacing:.6px;
-      text-transform:uppercase;
-      text-decoration:none;
-      color:var(--ink);
-      border-bottom:1px solid var(--ink);
-      padding-bottom:4px;
+    .size-select button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.55);
+      color: #f2f2f2;
+      padding: 9px 16px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .size-select button:hover {
+      background: #f2f2f2;
+      color: #0e0e0e;
+    }
+
+    /* PROJECT FILES */
+    .files {
+      margin-top: 34px; /* tighter */
+      text-align: left;
+    }
+
+    .files h2 {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      opacity: 0.5;
+      margin-bottom: 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      text-transform: lowercase;
+    }
+
+    .files-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px; /* tighter */
+    }
+
+    .file {
+      height: 130px; /* tighter */
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      opacity: 0.5;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      transition: opacity 0.2s ease, border 0.2s ease;
+    }
+
+    .file:hover {
+      opacity: 0.75;
+      border-color: rgba(255,255,255,0.45);
+    }
+
+    @media (max-width: 600px) {
+      .files-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="bar">
+  <main class="container">
 
-      <!-- Contact -->
-      <div class="contact-cluster">
-        <button class="contact-label-btn">
-          Contact <span class="caret"></span>
-        </button>
-        <div class="contact-icons">
-          <a class="icon-link" href="tel:+13475418555" aria-label="Phone">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 2.9l2.2-.7c.6-.2 1.2.1 1.4.7l1.1 2.6c.2.5.1 1.1-.3 1.5l-1.5 1.5c.9 1.7 2.3 3.1 4 4l1.5-1.5c.4-.4 1-.5 1.5-.3l2.6 1.1c.6.2.9.8.7 1.4l-.7 2.2c-.2.6-.7 1.1-1.3 1.3-.9.3-1.9.5-3 .5-5.9 0-10.7-4.8-10.7-10.7 0-1.1.2-2.1.5-3 .2-.6.7-1.1 1.3-1.3z"/></svg>
-          </a>
-          <a class="icon-link" href="mailto:info@cloth-collective.com" aria-label="Email">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13l8-7V6H4zm0 12h16V8l-8 7-8-7v10z"/></svg>
-          </a>
-        </div>
+    <p class="manifesto">
+      Misfires occur when damage becomes routine.
+    </p>
 
-        <!-- Contact dropdown panel -->
-        <div class="contact-panel">
-          <a href="tel:+13475418555">+1 (347) 541‑8555</a>
-          <a href="mailto:info@cloth-collective.com">info@cloth-collective.com</a>
-        </div>
-      </div>
-
-      <!-- Socials -->
-      <div class="social">
-        <span class="follow-label">Socials</span>
-        <a href="https://www.instagram.com/clothcollective.nyc" target="_blank" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm6.5-.9a1.1 1.1 0 11-2.2 0 1.1 1.1 0 012.2 0z"/></svg>
-        </a>
-        <a href="https://www.tiktok.com/@clothcollective.nyc" target="_blank" aria-label="TikTok">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12.75 2h3.5a5.25 5.25 0 005.25 5.25v3.5a8.75 8.75 0 01-5.25-1.75v7.75a6.75 6.75 0 11-6.75-6.75h.25v3.5a3.25 3.25 0 103.25 3.25V2z"/></svg>
-        </a>
-        <a href="https://www.snapchat.com/add/clothcollective" target="_blank" aria-label="Snapchat">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2c3.4 0 6.2 2.6 6.4 6 .2 2.3.7 3.8 2.6 4.8.6.3.9 1 .7 1.6-.3.8-1 1.1-1.8 1.3-1 .2-1.2.6-1.2.9s.3.6.7.8c.4.2.8.4.9.8.2.5 0 1-.4 1.3-.7.5-2.4.6-3.1.7-.4.6-1.1 1.2-1.9 1.5-.7.3-1.4.4-2.2.4s-1.5-.1-2.2-.4c-.8-.3-1.5-.9-1.9-1.5-.7-.1-2.4-.2-3.1-.7-.4-.3-.6-.8-.4-1.3.1-.4.5-.6.9-.8.4-.2.7-.5.7-.8 0-.3-.2-.7-1.2-.9-.8-.2-1.5-.5-1.8-1.3-.2-.6.1-1.3.7-1.6 1.9-1 2.4-2.5 2.6-4.8.2-3.4 3-6 6.4-6z"/></svg>
-        </a>
-      </div>
-
+    <div class="image-placeholder">
+      PRODUCT IMAGE
     </div>
-  </header>
 
-  <!-- Hero -->
-  <main>
-    <section class="hero">
-      <h1 class="hero-title">Armistice</h1>
-      <p class="hero-sub">Presented by Cloth Collective Studios</p>
-      <a href="/shop" class="hero-link">Shop now</a>
+    <div class="fit-note">fit runs small — size up if between sizes</div>
+
+    <div class="price">$25</div>
+
+    <a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
+    <div class="shipping-note">free shipping on nyc orders</div>
+
+    <div class="size-select" id="sizeSelect">
+      <button>S</button>
+      <button>M</button>
+      <button>L</button>
+      <button>XL</button>
+    </div>
+
+    <section class="files">
+      <h2>misfire / prjct fls</h2>
+
+      <div class="files-grid">
+        <div class="file">FILE 001</div>
+        <div class="file">FILE 002</div>
+        <div class="file">FILE 003</div>
+        <div class="file">FILE 004</div>
+      </div>
     </section>
+
   </main>
 
   <script>
-    const toggle = document.querySelector('.contact-label-btn');
-    const cluster = document.querySelector('.contact-cluster');
+    const buyBtn = document.getElementById('buyBtn');
+    const sizeSelect = document.getElementById('sizeSelect');
 
-    if (toggle && cluster) {
-      toggle.addEventListener('click', (e) => {
-        e.stopPropagation();
-        cluster.classList.toggle('open');
-      });
-
-      document.addEventListener('click', () => {
-        cluster.classList.remove('open');
-      });
-    }
+    buyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      buyBtn.style.display = 'none';
+      sizeSelect.style.display = 'flex';
+    });
   </script>
+
 </body>
 </html>
