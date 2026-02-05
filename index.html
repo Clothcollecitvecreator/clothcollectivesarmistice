@@ -19,7 +19,6 @@
       margin: 0;
       font-family: "Libre Baskerville", serif;
       font-style: italic;
-
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
@@ -27,7 +26,7 @@
     .container {
       max-width: 720px;
       margin: 0 auto;
-      padding: 56px 24px 72px; /* tighter */
+      padding: 56px 24px 72px;
       text-align: center;
     }
 
@@ -36,13 +35,13 @@
       font-size: 0.9rem;
       line-height: 1.55;
       opacity: 0.82;
-      margin-bottom: 22px; /* tighter */
+      margin-bottom: 22px;
     }
 
     /* PRODUCT */
     .image-placeholder {
       width: 100%;
-      height: 380px; /* tighter */
+      height: 380px;
       border: 1px solid rgba(255,255,255,0.22);
       display: flex;
       align-items: center;
@@ -60,7 +59,10 @@
       margin-bottom: 22px;
     }
 
+    /* PRICE = NON ITALIC */
     .price {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
       font-size: 0.95rem;
       margin-bottom: 12px;
       letter-spacing: 0.5px;
@@ -95,14 +97,14 @@
       font-size: 0.75rem;
       letter-spacing: 0.8px;
       opacity: 0.55;
-      margin-bottom: 26px;
+      margin-bottom: 18px;
     }
 
     .size-select {
       display: none;
       justify-content: center;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-bottom: 18px; /* tightened */
     }
 
     .size-select button {
@@ -123,7 +125,7 @@
 
     /* PROJECT FILES */
     .files {
-      margin-top: 34px; /* tighter */
+      margin-top: 18px; /* moved up */
       text-align: left;
     }
 
@@ -132,7 +134,7 @@
       font-size: 0.65rem;
       letter-spacing: 3px;
       opacity: 0.5;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
       text-transform: lowercase;
@@ -141,11 +143,11 @@
     .files-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px; /* tighter */
+      gap: 14px;
     }
 
     .file {
-      height: 130px; /* tighter */
+      height: 130px;
       border: 1px solid rgba(255,255,255,0.18);
       display: flex;
       align-items: center;
@@ -223,3 +225,4 @@
 
 </body>
 </html>
+
