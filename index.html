@@ -5,7 +5,7 @@
   <title>MISFIRE 000 — Cloth Collective</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- LIBRE BASKERVILLE ITALIC -->
+  <!-- Libre Baskerville Italic -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
@@ -14,11 +14,12 @@
     * { box-sizing: border-box; }
 
     body {
+      margin: 0;
       background: #0e0e0e;
       color: #f2f2f2;
-      margin: 0;
       font-family: "Libre Baskerville", serif;
       font-style: italic;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
@@ -30,24 +31,27 @@
 
     .manifesto {
       font-size: 0.9rem;
+      line-height: 1.55;
       opacity: 0.82;
       margin-bottom: 22px;
     }
 
-    .image-placeholder {
+    .image {
       width: 100%;
       height: 380px;
       border: 1px solid rgba(255,255,255,0.22);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 10px;
       font-size: 0.75rem;
+      letter-spacing: 1px;
       opacity: 0.55;
+      margin-bottom: 12px;
     }
 
     .fit-note {
       font-size: 0.7rem;
+      letter-spacing: 0.8px;
       opacity: 0.5;
       margin-bottom: 22px;
     }
@@ -56,23 +60,24 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
       font-size: 0.95rem;
+      letter-spacing: 0.5px;
       margin-bottom: 16px;
     }
 
-    /* BUY BUTTON */
     .buy-btn {
+      display: inline-block;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
       text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
       padding: 12px 42px;
       border: 1px solid rgba(255,255,255,0.8);
       background: #000;
       color: #fff;
-      letter-spacing: 2px;
-      font-size: 0.75rem;
-      cursor: pointer;
+      text-decoration: none;
       transition: all 0.2s ease;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
     }
 
     .buy-btn:hover {
@@ -80,31 +85,27 @@
       color: #000;
     }
 
-    #shopify-wrapper {
-      display: none;
-      margin-bottom: 14px;
-    }
-
     .shipping-note {
       font-size: 0.75rem;
+      letter-spacing: 0.8px;
       opacity: 0.55;
-      margin-bottom: 18px;
+      margin-bottom: 28px;
     }
 
     /* FILES */
     .files {
-      margin-top: 18px;
       text-align: left;
+      margin-top: 24px;
     }
 
     .files h2 {
       text-align: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
       font-size: 0.65rem;
       letter-spacing: 3px;
       opacity: 0.5;
       margin-bottom: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
       text-transform: lowercase;
     }
 
@@ -120,11 +121,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.65rem;
-      opacity: 0.5;
-      cursor: pointer;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      opacity: 0.5;
+      transition: opacity 0.2s ease, border 0.2s ease;
+      cursor: pointer;
+    }
+
+    .file:hover {
+      opacity: 0.75;
+      border-color: rgba(255,255,255,0.45);
     }
 
     @media (max-width: 600px) {
@@ -136,98 +144,43 @@
 </head>
 <body>
 
-<main class="container">
+  <main class="container">
 
-  <p class="manifesto">Misfires occur when damage becomes routine.</p>
+    <p class="manifesto">
+      Misfires occur when damage becomes routine.
+    </p>
 
-  <div class="image-placeholder">PRODUCT IMAGE</div>
+    <div class="image">PRODUCT IMAGE</div>
 
-  <div class="fit-note">fit runs small — size up if between sizes</div>
-
-  <div class="price">$30</div>
-
-  <!-- STEP 1 -->
-  <button id="revealBuy" class="buy-btn">BUY NOW</button>
-
-  <!-- STEP 2 -->
-  <div id="shopify-wrapper">
-    <div id="product-component-1770648371797"></div>
-  </div>
-
-  <div class="shipping-note">free shipping on nyc orders</div>
-
-  <!-- FILES (SAFE + UNTOUCHED) -->
-  <section class="files">
-    <h2>misfire / prjct fls</h2>
-    <div class="files-grid">
-      <div class="file">FILE 001</div>
-      <div class="file">FILE 002</div>
-      <div class="file">FILE 003</div>
-      <div class="file">FILE 004</div>
+    <div class="fit-note">
+      fit runs small — size up if between sizes
     </div>
-  </section>
 
-</main>
+    <div class="price">$30</div>
 
-<script>
-  const revealBtn = document.getElementById('revealBuy');
-  const shopifyWrap = document.getElementById('shopify-wrapper');
+    <!-- OPTION B BUY BUTTON -->
+    <a
+      href="https://vjm0kv-vi.myshopify.com/products/misfire-000"
+      class="buy-btn"
+    >
+      BUY NOW
+    </a>
 
-  revealBtn.addEventListener('click', () => {
-    revealBtn.style.display = 'none';
-    shopifyWrap.style.display = 'block';
-  });
-</script>
+    <div class="shipping-note">
+      free shipping on nyc orders
+    </div>
 
-<!-- SHOPIFY BUY BUTTON -->
-<script type="text/javascript">
-(function () {
-  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-  if (window.ShopifyBuy) {
-    if (window.ShopifyBuy.UI) {
-      ShopifyBuyInit();
-    } else {
-      loadScript();
-    }
-  } else {
-    loadScript();
-  }
-  function loadScript() {
-    var script = document.createElement('script');
-    script.async = true;
-    script.src = scriptURL;
-    document.head.appendChild(script);
-    script.onload = ShopifyBuyInit;
-  }
-  function ShopifyBuyInit() {
-    var client = ShopifyBuy.buildClient({
-      domain: 'vjm0kv-vi.myshopify.com',
-      storefrontAccessToken: '8fd56c1817c5fdc0d35acb77d5db4b44',
-    });
-    ShopifyBuy.UI.onReady(client).then(function (ui) {
-      ui.createComponent('product', {
-        id: '9267773112557',
-        node: document.getElementById('product-component-1770648371797'),
-        moneyFormat: '%24%7B%7Bamount%7D%7D',
-        options: {
-          product: {
-            contents: {
-              img: false,
-              title: false,
-              price: false
-            },
-            text: {
-              button: 'BUY NOW'
-            }
-          },
-          option: {},
-          cart: { popup: false }
-        }
-      });
-    });
-  }
-})();
-</script>
+    <section class="files">
+      <h2>misfire / prjct fls</h2>
+      <div class="files-grid">
+        <div class="file">FILE 001</div>
+        <div class="file">FILE 002</div>
+        <div class="file">FILE 003</div>
+        <div class="file">FILE 004</div>
+      </div>
+    </section>
+
+  </main>
 
 </body>
 </html>
