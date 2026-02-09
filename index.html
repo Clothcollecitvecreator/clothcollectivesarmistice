@@ -169,8 +169,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <main class="container">
 
     <p class="manifesto">
@@ -197,7 +197,6 @@
 
     <section class="files">
       <h2>misfire / prjct fls</h2>
-
       <div class="files-grid">
         <div class="file">FILE 001</div>
         <div class="file">FILE 002</div>
@@ -212,12 +211,24 @@
     const buyBtn = document.getElementById('buyBtn');
     const sizeSelect = document.getElementById('sizeSelect');
 
-    buyBtn.addEventListener('click', function(e) {
+    const shopifyLinks = {
+      S: "https://misfire-project-001.myshopify.com/cart/49360194765037:1",
+      M: "https://misfire-project-001.myshopify.com/cart/49360194797805:1",
+      L: "https://misfire-project-001.myshopify.com/cart/49360194830573:1",
+      XL: "https://misfire-project-001.myshopify.com/cart/49360194863341:1",
+    };
+
+    buyBtn.addEventListener('click', (e) => {
       e.preventDefault();
       buyBtn.style.display = 'none';
       sizeSelect.style.display = 'flex';
     });
-  </script>
 
+    document.querySelectorAll('.size-select button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.location.href = shopifyLinks[btn.innerText];
+      });
+    });
+  </script>
 </body>
 </html>
