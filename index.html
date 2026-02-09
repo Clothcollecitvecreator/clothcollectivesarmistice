@@ -5,7 +5,7 @@
   <title>MISFIRE 000 — Cloth Collective</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Libre Baskerville Italic -->
+  <!-- LIBRE BASKERVILLE ITALIC -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
@@ -14,12 +14,13 @@
     * { box-sizing: border-box; }
 
     body {
-      margin: 0;
       background: #0e0e0e;
       color: #f2f2f2;
+      margin: 0;
       font-family: "Libre Baskerville", serif;
       font-style: italic;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -36,17 +37,17 @@
       margin-bottom: 22px;
     }
 
-    .image {
+    .image-placeholder {
       width: 100%;
       height: 380px;
       border: 1px solid rgba(255,255,255,0.22);
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-bottom: 10px;
       font-size: 0.75rem;
       letter-spacing: 1px;
       opacity: 0.55;
-      margin-bottom: 12px;
     }
 
     .fit-note {
@@ -60,52 +61,78 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
       font-size: 0.95rem;
+      margin-bottom: 12px;
       letter-spacing: 0.5px;
-      margin-bottom: 16px;
+    }
+
+    .buy-btn,
+    .size-select button {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      text-transform: uppercase;
     }
 
     .buy-btn {
       display: inline-block;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      letter-spacing: 2px;
       padding: 12px 42px;
       border: 1px solid rgba(255,255,255,0.8);
-      background: #000;
-      color: #fff;
+      color: #f2f2f2;
       text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      margin-bottom: 4px;
       transition: all 0.2s ease;
-      margin-bottom: 6px;
+      cursor: pointer;
     }
 
     .buy-btn:hover {
-      background: #fff;
-      color: #000;
+      background: #f2f2f2;
+      color: #0e0e0e;
     }
 
     .shipping-note {
       font-size: 0.75rem;
       letter-spacing: 0.8px;
       opacity: 0.55;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
 
-    /* FILES */
+    .size-select {
+      display: none;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .size-select button {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.55);
+      color: #f2f2f2;
+      padding: 9px 16px;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .size-select button:hover {
+      background: #f2f2f2;
+      color: #0e0e0e;
+    }
+
     .files {
+      margin-top: 18px;
       text-align: left;
-      margin-top: 24px;
     }
 
     .files h2 {
       text-align: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
       font-size: 0.65rem;
       letter-spacing: 3px;
       opacity: 0.5;
       margin-bottom: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
       text-transform: lowercase;
     }
 
@@ -121,13 +148,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
       font-size: 0.65rem;
       letter-spacing: 1px;
       opacity: 0.5;
-      transition: opacity 0.2s ease, border 0.2s ease;
       cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      transition: opacity 0.2s ease, border 0.2s ease;
     }
 
     .file:hover {
@@ -150,28 +177,27 @@
       Misfires occur when damage becomes routine.
     </p>
 
-    <div class="image">PRODUCT IMAGE</div>
-
-    <div class="fit-note">
-      fit runs small — size up if between sizes
+    <div class="image-placeholder">
+      PRODUCT IMAGE
     </div>
 
-    <div class="price">$30</div>
+    <div class="fit-note">fit runs small — size up if between sizes</div>
 
-    <!-- OPTION B BUY BUTTON -->
-    <a
-      href="https://vjm0kv-vi.myshopify.com/products/misfire-000"
-      class="buy-btn"
-    >
-      BUY NOW
-    </a>
+    <div class="price">$25</div>
 
-    <div class="shipping-note">
-      free shipping on nyc orders
+    <a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
+    <div class="shipping-note">free shipping on nyc orders</div>
+
+    <div class="size-select" id="sizeSelect">
+      <button>S</button>
+      <button>M</button>
+      <button>L</button>
+      <button>XL</button>
     </div>
 
     <section class="files">
       <h2>misfire / prjct fls</h2>
+
       <div class="files-grid">
         <div class="file">FILE 001</div>
         <div class="file">FILE 002</div>
@@ -181,6 +207,17 @@
     </section>
 
   </main>
+
+  <script>
+    const buyBtn = document.getElementById('buyBtn');
+    const sizeSelect = document.getElementById('sizeSelect');
+
+    buyBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      buyBtn.style.display = 'none';
+      sizeSelect.style.display = 'flex';
+    });
+  </script>
 
 </body>
 </html>
