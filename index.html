@@ -30,7 +30,6 @@
       text-align: center;
     }
 
-    /* MANIFESTO */
     .manifesto {
       font-size: 0.9rem;
       line-height: 1.55;
@@ -38,7 +37,6 @@
       margin-bottom: 22px;
     }
 
-    /* PRODUCT */
     .image-placeholder {
       width: 100%;
       height: 380px;
@@ -59,73 +57,30 @@
       margin-bottom: 22px;
     }
 
-    /* PRICE = NON ITALIC */
     .price {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-style: normal;
       font-size: 0.95rem;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       letter-spacing: 0.5px;
     }
 
-    /* BUTTONS = NON ITALIC */
-    .buy-btn,
-    .size-select button {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      text-transform: uppercase;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      padding: 12px 42px;
-      border: 1px solid rgba(255,255,255,0.8);
-      color: #f2f2f2;
-      text-decoration: none;
-      letter-spacing: 2px;
-      font-size: 0.75rem;
-      margin-bottom: 4px;
-      transition: all 0.2s ease;
-    }
-
-    .buy-btn:hover {
-      background: #f2f2f2;
-      color: #0e0e0e;
+    /* Shopify button wrapper */
+    .buy-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 6px;
     }
 
     .shipping-note {
       font-size: 0.75rem;
       letter-spacing: 0.8px;
       opacity: 0.55;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
 
-    .size-select {
-      display: none;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 18px; /* tightened */
-    }
-
-    .size-select button {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.55);
-      color: #f2f2f2;
-      padding: 9px 16px;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .size-select button:hover {
-      background: #f2f2f2;
-      color: #0e0e0e;
-    }
-
-    /* PROJECT FILES */
     .files {
-      margin-top: 18px; /* moved up */
+      margin-top: 18px;
       text-align: left;
     }
 
@@ -187,17 +142,15 @@
 
     <div class="fit-note">fit runs small — size up if between sizes</div>
 
-    <div class="price">$25</div>
+    <!-- PRICE SHOWN ON SITE -->
+    <div class="price">$30</div>
 
-    <a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
-    <div class="shipping-note">free shipping on nyc orders</div>
-
-    <div class="size-select" id="sizeSelect">
-      <button>S</button>
-      <button>M</button>
-      <button>L</button>
-      <button>XL</button>
+    <!-- SHOPIFY BUY BUTTON -->
+    <div class="buy-wrapper">
+      <div id="product-component-1770647636052"></div>
     </div>
+
+    <div class="shipping-note">free shipping on nyc orders</div>
 
     <section class="files">
       <h2>misfire / prjct fls</h2>
@@ -212,17 +165,56 @@
 
   </main>
 
-  <script>
-    const buyBtn = document.getElementById('buyBtn');
-    const sizeSelect = document.getElementById('sizeSelect');
-
-    buyBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      buyBtn.style.display = 'none';
-      sizeSelect.style.display = 'flex';
-    });
+  <!-- SHOPIFY SCRIPT -->
+  <script type="text/javascript">
+  (function () {
+    var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+    if (window.ShopifyBuy) {
+      if (window.ShopifyBuy.UI) {
+        ShopifyBuyInit();
+      } else {
+        loadScript();
+      }
+    } else {
+      loadScript();
+    }
+    function loadScript() {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = scriptURL;
+      document.head.appendChild(script);
+      script.onload = ShopifyBuyInit;
+    }
+    function ShopifyBuyInit() {
+      var client = ShopifyBuy.buildClient({
+        domain: 'vjm0kv-vi.myshopify.com',
+        storefrontAccessToken: '8fd56c1817c5fdc0d35acb77d5db4b44',
+      });
+      ShopifyBuy.UI.onReady(client).then(function (ui) {
+        ui.createComponent('product', {
+          id: '9267773112557',
+          node: document.getElementById('product-component-1770647636052'),
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: {
+            product: {
+              contents: {
+                img: false,
+                title: false,
+                price: false
+              },
+              text: {
+                button: 'Buy now'
+              }
+            },
+            cart: {
+              startOpen: false
+            }
+          }
+        });
+      });
+    }
+  })();
   </script>
 
 </body>
 </html>
-
