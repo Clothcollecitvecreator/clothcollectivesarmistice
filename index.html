@@ -19,8 +19,6 @@
       margin: 0;
       font-family: "Libre Baskerville", serif;
       font-style: italic;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     .container {
@@ -32,7 +30,6 @@
 
     .manifesto {
       font-size: 0.9rem;
-      line-height: 1.55;
       opacity: 0.82;
       margin-bottom: 22px;
     }
@@ -46,13 +43,11 @@
       justify-content: center;
       margin-bottom: 10px;
       font-size: 0.75rem;
-      letter-spacing: 1px;
       opacity: 0.55;
     }
 
     .fit-note {
       font-size: 0.7rem;
-      letter-spacing: 0.8px;
       opacity: 0.5;
       margin-bottom: 22px;
     }
@@ -62,159 +57,148 @@
       font-style: normal;
       font-size: 0.95rem;
       margin-bottom: 16px;
-      letter-spacing: 0.5px;
     }
 
-    /* Shopify button wrapper */
-    .buy-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 6px;
-    }
-
-    .shipping-note {
+    /* FAKE BUY BUTTON */
+    .buy-now {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-style: normal;
+      text-transform: uppercase;
+      padding: 12px 42px;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: #000;
+      color: #fff;
+      letter-spacing: 2px;
       font-size: 0.75rem;
-      letter-spacing: 0.8px;
-      opacity: 0.55;
-      margin-bottom: 24px;
-    }
-
-    .files {
-      margin-top: 18px;
-      text-align: left;
-    }
-
-    .files h2 {
-      text-align: center;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      opacity: 0.5;
-      margin-bottom: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      text-transform: lowercase;
-    }
-
-    .files-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .file {
-      height: 130px;
-      border: 1px solid rgba(255,255,255,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      letter-spacing: 1px;
-      opacity: 0.5;
       cursor: pointer;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      transition: opacity 0.2s ease, border 0.2s ease;
+      transition: all 0.2s ease;
     }
 
-    .file:hover {
-      opacity: 0.75;
-      border-color: rgba(255,255,255,0.45);
+    .buy-now:hover {
+      background: #fff;
+      color: #000;
     }
 
-    @media (max-width: 600px) {
-      .files-grid {
-        grid-template-columns: 1fr;
-      }
+    .hidden {
+      display: none;
+    }
+
+    #shopify-wrapper {
+      margin-top: 14px;
     }
   </style>
 </head>
 <body>
 
-  <main class="container">
+<main class="container">
 
-    <p class="manifesto">
-      Misfires occur when damage becomes routine.
-    </p>
+  <p class="manifesto">Misfires occur when damage becomes routine.</p>
 
-    <div class="image-placeholder">
-      PRODUCT IMAGE
-    </div>
+  <div class="image-placeholder">PRODUCT IMAGE</div>
 
-    <div class="fit-note">fit runs small — size up if between sizes</div>
+  <div class="fit-note">fit runs small — size up if between sizes</div>
 
-    <!-- PRICE SHOWN ON SITE -->
-    <div class="price">$30</div>
+  <div class="price">$30</div>
 
-    <!-- SHOPIFY BUY BUTTON -->
-    <div class="buy-wrapper">
-      <div id="product-component-1770647636052"></div>
-    </div>
+  <!-- STEP 1 BUY -->
+  <button id="revealBuy" class="buy-now">BUY NOW</button>
 
-    <div class="shipping-note">free shipping on nyc orders</div>
+  <!-- STEP 2 SHOPIFY -->
+  <div id="shopify-wrapper" class="hidden">
+    <div id="product-component-1770648371797"></div>
+  </div>
 
-    <section class="files">
-      <h2>misfire / prjct fls</h2>
+</main>
 
-      <div class="files-grid">
-        <div class="file">FILE 001</div>
-        <div class="file">FILE 002</div>
-        <div class="file">FILE 003</div>
-        <div class="file">FILE 004</div>
-      </div>
-    </section>
+<script>
+  const revealBtn = document.getElementById('revealBuy');
+  const shopifyWrap = document.getElementById('shopify-wrapper');
 
-  </main>
+  revealBtn.addEventListener('click', () => {
+    revealBtn.style.display = 'none';
+    shopifyWrap.style.display = 'block';
+  });
+</script>
 
-  <!-- SHOPIFY SCRIPT -->
-  <script type="text/javascript">
-  (function () {
-    var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-    if (window.ShopifyBuy) {
-      if (window.ShopifyBuy.UI) {
-        ShopifyBuyInit();
-      } else {
-        loadScript();
-      }
+<!-- SHOPIFY BUY BUTTON -->
+<script type="text/javascript">
+(function () {
+  var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+  if (window.ShopifyBuy) {
+    if (window.ShopifyBuy.UI) {
+      ShopifyBuyInit();
     } else {
       loadScript();
     }
-    function loadScript() {
-      var script = document.createElement('script');
-      script.async = true;
-      script.src = scriptURL;
-      document.head.appendChild(script);
-      script.onload = ShopifyBuyInit;
-    }
-    function ShopifyBuyInit() {
-      var client = ShopifyBuy.buildClient({
-        domain: 'vjm0kv-vi.myshopify.com',
-        storefrontAccessToken: '8fd56c1817c5fdc0d35acb77d5db4b44',
-      });
-      ShopifyBuy.UI.onReady(client).then(function (ui) {
-        ui.createComponent('product', {
-          id: '9267773112557',
-          node: document.getElementById('product-component-1770647636052'),
-          moneyFormat: '%24%7B%7Bamount%7D%7D',
-          options: {
-            product: {
-              contents: {
-                img: false,
-                title: false,
-                price: false
-              },
-              text: {
-                button: 'Buy now'
-              }
+  } else {
+    loadScript();
+  }
+  function loadScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = scriptURL;
+    document.head.appendChild(script);
+    script.onload = ShopifyBuyInit;
+  }
+  function ShopifyBuyInit() {
+    var client = ShopifyBuy.buildClient({
+      domain: 'vjm0kv-vi.myshopify.com',
+      storefrontAccessToken: '8fd56c1817c5fdc0d35acb77d5db4b44',
+    });
+    ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ui.createComponent('product', {
+        id: '9267773112557',
+        node: document.getElementById('product-component-1770648371797'),
+        moneyFormat: '%24%7B%7Bamount%7D%7D',
+        options: {
+          product: {
+            contents: {
+              img: false,
+              title: false,
+              price: false
             },
-            cart: {
-              startOpen: false
+            text: {
+              button: 'BUY NOW'
+            },
+            styles: {
+              button: {
+                "background-color": "#000000",
+                "color": "#ffffff",
+                "letter-spacing": "2px",
+                "font-size": "12px",
+                "padding": "14px 42px",
+                ":hover": {
+                  "background-color": "#ffffff",
+                  "color": "#000000"
+                }
+              }
             }
+          },
+          option: {
+            styles: {
+              label: {
+                "color": "#ffffff",
+                "letter-spacing": "2px",
+                "font-size": "11px"
+              },
+              select: {
+                "background-color": "#000000",
+                "color": "#ffffff",
+                "border": "1px solid rgba(255,255,255,0.6)",
+                "padding": "10px",
+                "letter-spacing": "2px"
+              }
+            }
+          },
+          cart: {
+            popup: false
           }
-        });
+        }
       });
-    }
-  })();
-  </script>
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
