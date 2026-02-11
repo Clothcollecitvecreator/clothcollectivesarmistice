@@ -1,274 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>MISFIRE 000 — Cloth Collective</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<title>MISFIRE 000 — Cloth Collective</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- LIBRE BASKERVILLE ITALIC -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
 
-  <style>
-    * { box-sizing: border-box; }
+<style>
+* { box-sizing: border-box; }
 
-    body {
-      background: #0e0e0e;
-      color: #f2f2f2;
-      margin: 0;
-      font-family: "Libre Baskerville", serif;
-      font-style: italic;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+body {
+  background: #000;
+  color: #f2f2f2;
+  margin: 0;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+}
 
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 56px 24px 72px;
-      text-align: center;
-    }
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px 100px;
+  text-align: center;
+}
 
-    .manifesto {
-      font-size: 0.9rem;
-      line-height: 1.55;
-      opacity: 0.82;
-      margin-bottom: 22px;
-    }
+.manifesto {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 50px;
+}
 
-    /* PRODUCT SECTION */
+/* PRODUCT VIEWER */
 
-    .product-section {
-      margin-bottom: 10px;
-    }
+.product-viewer {
+  position: relative;
+  max-width: 460px; /* streetwear sweet spot */
+  margin: 0 auto 50px;
+}
 
-    .main-image {
-      max-width: 550px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
+.product-viewer img {
+  width: 100%;
+  display: block;
+  transition: transform 0.4s ease;
+  cursor: zoom-in;
+}
 
-    .main-image img {
-      width: 100%;
-      transition: transform 0.4s ease;
-      cursor: zoom-in;
-    }
+.product-viewer:hover img {
+  transform: scale(1.08); /* subtle premium zoom */
+}
 
-    .main-image:hover img {
-      transform: scale(1.2);
-    }
+/* ARROWS */
 
-    .thumbnail-row {
-      margin-top: 16px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.6;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
 
-    .thumbnail-row img {
-      width: 80px;
-      opacity: 0.6;
-      cursor: pointer;
-      transition: opacity 0.2s ease;
-    }
+.arrow:hover {
+  opacity: 1;
+}
 
-    .thumbnail-row img:hover {
-      opacity: 1;
-    }
+.arrow-left { left: -40px; }
+.arrow-right { right: -40px; }
 
-    .fit-note {
-      font-size: 0.7rem;
-      letter-spacing: 0.8px;
-      opacity: 0.5;
-      margin-bottom: 22px;
-    }
+.fit-note {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-bottom: 25px;
+}
 
-    .price {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
+.price {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-style: normal;
+  font-size: 1rem;
+  margin-bottom: 14px;
+}
 
-    .buy-btn,
-    .size-select button {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      text-transform: uppercase;
-    }
+.buy-btn {
+  display: inline-block;
+  padding: 12px 46px;
+  border: 1px solid rgba(255,255,255,0.85);
+  color: #f2f2f2;
+  text-decoration: none;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+  transition: all 0.2s ease;
+}
 
-    .buy-btn {
-      display: inline-block;
-      padding: 12px 42px;
-      border: 1px solid rgba(255,255,255,0.8);
-      color: #f2f2f2;
-      text-decoration: none;
-      letter-spacing: 2px;
-      font-size: 0.75rem;
-      margin-bottom: 4px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
+.buy-btn:hover {
+  background: #f2f2f2;
+  color: #000;
+}
 
-    .buy-btn:hover {
-      background: #f2f2f2;
-      color: #0e0e0e;
-    }
+.shipping-note {
+  font-size: 0.75rem;
+  opacity: 0.55;
+  margin-bottom: 22px;
+}
 
-    .shipping-note {
-      font-size: 0.75rem;
-      letter-spacing: 0.8px;
-      opacity: 0.55;
-      margin-bottom: 18px;
-    }
+.size-select {
+  display: none;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
 
-    .size-select {
-      display: none;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 18px;
-    }
+.size-select button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.55);
+  color: #f2f2f2;
+  padding: 9px 16px;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
 
-    .size-select button {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.55);
-      color: #f2f2f2;
-      padding: 9px 16px;
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
+.size-select button:hover {
+  background: #f2f2f2;
+  color: #000;
+}
 
-    .size-select button:hover {
-      background: #f2f2f2;
-      color: #0e0e0e;
-    }
-
-    .files {
-      margin-top: 18px;
-      text-align: left;
-    }
-
-    .files h2 {
-      text-align: center;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      opacity: 0.5;
-      margin-bottom: 16px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      text-transform: lowercase;
-    }
-
-    .files-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .file {
-      height: 130px;
-      border: 1px solid rgba(255,255,255,0.18);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.65rem;
-      letter-spacing: 1px;
-      opacity: 0.5;
-      cursor: pointer;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-style: normal;
-      transition: opacity 0.2s ease, border 0.2s ease;
-    }
-
-    .file:hover {
-      opacity: 0.75;
-      border-color: rgba(255,255,255,0.45);
-    }
-
-    @media (max-width: 600px) {
-      .files-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+@media (max-width: 768px) {
+  .arrow-left { left: 10px; }
+  .arrow-right { right: 10px; }
+}
+</style>
 </head>
 
 <body>
-  <main class="container">
+<main class="container">
 
-    <p class="manifesto">
-      Misfires occur when damage becomes routine.
-    </p>
+<p class="manifesto">
+Misfires occur when damage becomes routine.
+</p>
 
-    <!-- PRODUCT GALLERY -->
-    <div class="product-section">
-      <div class="main-image">
-        <img id="mainProductImage" src="images/misfire-front.png" alt="Misfire Graphic Tee">
-      </div>
+<div class="product-viewer">
+  <span class="arrow arrow-left" onclick="prevImage()">‹</span>
+  <img id="productImage" src="images/misfire-front.png" alt="Misfire Graphic Tee">
+  <span class="arrow arrow-right" onclick="nextImage()">›</span>
+</div>
 
-      <div class="thumbnail-row">
-        <img src="images/misfire-front.png" onclick="changeImage(this)">
-        <img src="images/misfire-back.png" onclick="changeImage(this)">
-      </div>
-    </div>
+<div class="fit-note">fit runs small — size up if between sizes</div>
 
-    <div class="fit-note">fit runs small — size up if between sizes</div>
+<div class="price">$28</div>
 
-    <div class="price">$28</div>
+<a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
+<div class="shipping-note">free shipping on nyc orders</div>
 
-    <a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
-    <div class="shipping-note">free shipping on nyc orders</div>
+<div class="size-select" id="sizeSelect">
+  <button>S</button>
+  <button>M</button>
+  <button>L</button>
+  <button>XL</button>
+</div>
 
-    <div class="size-select" id="sizeSelect">
-      <button>S</button>
-      <button>M</button>
-      <button>L</button>
-      <button>XL</button>
-    </div>
+</main>
 
-    <section class="files">
-      <h2>misfire / prjct fls</h2>
-      <div class="files-grid">
-        <div class="file">FILE 001</div>
-        <div class="file">FILE 002</div>
-        <div class="file">FILE 003</div>
-        <div class="file">FILE 004</div>
-      </div>
-    </section>
+<script>
+const images = [
+  "images/misfire-front.png",
+  "images/misfire-back.png"
+];
 
-  </main>
+let currentIndex = 0;
+const productImage = document.getElementById("productImage");
 
-  <script>
-    const buyBtn = document.getElementById('buyBtn');
-    const sizeSelect = document.getElementById('sizeSelect');
-    const mainProductImage = document.getElementById('mainProductImage');
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  productImage.src = images[currentIndex];
+}
 
-    function changeImage(element) {
-      mainProductImage.src = element.src;
-    }
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  productImage.src = images[currentIndex];
+}
 
-    const shopifyLinks = {
-      S: "https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout",
-      M: "https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout",
-      L: "https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout",
-      XL: "https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout",
-    };
+const buyBtn = document.getElementById('buyBtn');
+const sizeSelect = document.getElementById('sizeSelect');
 
-    buyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      buyBtn.style.display = 'none';
-      sizeSelect.style.display = 'flex';
-    });
+const shopifyLinks = {
+  S: "https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout",
+  M: "https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout",
+  L: "https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout",
+  XL: "https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout",
+};
 
-    document.querySelectorAll('.size-select button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        window.location.href = shopifyLinks[btn.innerText];
-      });
-    });
-  </script>
+buyBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  buyBtn.style.display = 'none';
+  sizeSelect.style.display = 'flex';
+});
+
+document.querySelectorAll('.size-select button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    window.location.href = shopifyLinks[btn.innerText];
+  });
+});
+</script>
+
 </body>
 </html>
