@@ -1,210 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>MISFIRE 000 — Cloth Collective</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISFIRE — Project File 001</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  background: #000;
-  color: #f2f2f2;
-  margin: 0;
-  font-family: "Libre Baskerville", serif;
-  font-style: italic;
+  background: #ffffff;
+  color: #000000;
+  font-family: 'Libre Baskerville', serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 80px 24px 100px;
+header {
   text-align: center;
+  padding: 60px 20px 20px;
 }
 
-.manifesto {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin-bottom: 50px;
+header h1 {
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 400;
 }
 
-/* PRODUCT VIEWER */
+header p {
+  font-size: 11px;
+  margin-top: 8px;
+  letter-spacing: 2px;
+}
 
-.product-viewer {
+.hero {
   position: relative;
-  max-width: 460px; /* streetwear sweet spot */
-  margin: 0 auto 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
 }
 
-.product-viewer img {
-  width: 100%;
-  display: block;
-  transition: transform 0.4s ease;
-  cursor: zoom-in;
+.center-product img {
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.08);
 }
 
-.product-viewer:hover img {
-  transform: scale(1.08); /* subtle premium zoom */
-}
-
-/* ARROWS */
-
-.arrow {
+.side-images {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.6;
-  user-select: none;
-  transition: opacity 0.2s ease;
+  display: flex;
+  gap: 60px;
 }
 
-.arrow:hover {
-  opacity: 1;
+.left-images {
+  left: 6%;
+  flex-direction: column;
 }
 
-.arrow-left { left: -40px; }
-.arrow-right { right: -40px; }
+.right-images {
+  right: 6%;
+  flex-direction: column;
+}
 
-.fit-note {
-  font-size: 0.7rem;
-  opacity: 0.5;
-  margin-bottom: 25px;
+.side-images img {
+  width: 160px;
+  filter: grayscale(100%);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  transform: rotate(-2deg);
+}
+
+.right-images img:nth-child(2) {
+  transform: rotate(3deg);
+}
+
+.purchase {
+  text-align: center;
+  padding: 80px 20px;
 }
 
 .price {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-style: normal;
-  font-size: 1rem;
-  margin-bottom: 14px;
+  font-size: 22px;
+  margin-bottom: 30px;
 }
 
-.buy-btn {
+.sizes {
+  margin-bottom: 30px;
+}
+
+.sizes span {
   display: inline-block;
-  padding: 12px 46px;
-  border: 1px solid rgba(255,255,255,0.85);
-  color: #f2f2f2;
-  text-decoration: none;
-  letter-spacing: 2px;
-  font-size: 0.75rem;
-  margin-bottom: 6px;
-  transition: all 0.2s ease;
-}
-
-.buy-btn:hover {
-  background: #f2f2f2;
-  color: #000;
-}
-
-.shipping-note {
-  font-size: 0.75rem;
-  opacity: 0.55;
-  margin-bottom: 22px;
-}
-
-.size-select {
-  display: none;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.size-select button {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.55);
-  color: #f2f2f2;
-  padding: 9px 16px;
-  font-size: 0.65rem;
-  letter-spacing: 2px;
+  margin: 0 14px;
+  font-size: 14px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  letter-spacing: 2px;
+  position: relative;
+  transition: opacity 0.2s ease;
 }
 
-.size-select button:hover {
-  background: #f2f2f2;
-  color: #000;
+.sizes span::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0%;
+  height: 1px;
+  background: #000;
+  transition: width 0.25s ease;
 }
 
-@media (max-width: 768px) {
-  .arrow-left { left: 10px; }
-  .arrow-right { right: 10px; }
+.sizes span:hover {
+  opacity: 0.7;
 }
+
+.sizes span:hover::after {
+  width: 100%;
+}
+
+.shipping {
+  margin-top: 18px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.authors-note {
+  max-width: 720px;
+  margin: 60px auto 40px;
+  text-align: left;
+  padding: 0 20px;
+}
+
+.authors-note h2 {
+  font-size: 12px;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+}
+
+.authors-note p {
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.archive-section {
+  max-width: 1000px;
+  margin: 80px auto 120px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.archive-box h3 {
+  font-size: 11px;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+}
+
+.archive-box ul {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  line-height: 2.2;
+}
+
+.archive-box ul li {
+  margin-bottom: 4px;
+}
+
+.archive-box ul li span {
+  opacity: .35;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.image-grid img {
+  width: 100%;
+  filter: grayscale(100%);
+}
+
+@media(max-width: 1000px) {
+  .side-images {
+    display: none;
+  }
+  .archive-section {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 </head>
 
 <body>
-<main class="container">
 
-<p class="manifesto">
-Misfires occur when damage becomes routine.
-</p>
+<header>
+  <h1>MISFIRE</h1>
+  <p>PROJECT FILE 001</p>
+</header>
 
-<div class="product-viewer">
-  <span class="arrow arrow-left" onclick="prevImage()">‹</span>
-  <img id="productImage" src="images/misfire-front.png" alt="Misfire Graphic Tee">
-  <span class="arrow arrow-right" onclick="nextImage()">›</span>
-</div>
+<section class="hero">
 
-<div class="fit-note">fit runs small — size up if between sizes</div>
+  <div class="side-images left-images">
+    <img src="https://via.placeholder.com/200x250" alt="">
+    <img src="https://via.placeholder.com/200x200" alt="">
+  </div>
 
-<div class="price">$28</div>
+  <div class="center-product">
+    <img src="https://via.placeholder.com/600x700" alt="Misfire Shirt">
+  </div>
 
-<a href="#" class="buy-btn" id="buyBtn">BUY NOW</a>
-<div class="shipping-note">free shipping on nyc orders</div>
+  <div class="side-images right-images">
+    <img src="https://via.placeholder.com/200x240" alt="">
+    <img src="https://via.placeholder.com/200x210" alt="">
+  </div>
 
-<div class="size-select" id="sizeSelect">
-  <button>S</button>
-  <button>M</button>
-  <button>L</button>
-  <button>XL</button>
-</div>
+</section>
 
-</main>
+<section class="purchase">
+
+  <div class="price">$28.00</div>
+
+  <div class="sizes">
+    <span data-size="S">S</span>
+    <span data-size="M">M</span>
+    <span data-size="L">L</span>
+    <span data-size="XL">XL</span>
+  </div>
+
+  <div class="shipping">
+    Free shipping on NYC orders.
+  </div>
+
+</section>
+
+<section class="authors-note">
+  <h2>AUTHOR'S NOTE</h2>
+  <p>
+    This project exists somewhere between documentation and memory. Misfire began as a moment, then became an object, and now lives as a record of something that could not be explained directly. Every image, every frame, every decision is part of an archive rather than a campaign. This is not just a garment but a filed entry in a larger body of work, preserved in its original condition and released without revision.
+  </p>
+</section>
+
+<section class="archive-section">
+
+  <div class="archive-box">
+    <h3>AUDIO ARCHIVE</h3>
+    <p style="font-size:14px; line-height:1.8; margin-bottom:30px;">
+      A selection of records that sat in rotation while Misfire was being developed. Not a soundtrack — just the atmosphere it was built inside.
+    </p>
+    <ul>
+      <li>A$AP Rocky — <em>Punk Rocky</em> <span>(Don’t Be Dumb)</span></li>
+      <li>Bad Bunny — <em>Bokete</em> <span>(DeBÍ TiRAR MáS FOToS)</span></li>
+      <li>Drake — <em>Jaded</em> <span>(Scorpion)</span></li>
+      <li>J. Cole — <em>I Love Her Again</em> <span>(The Fall Off)</span></li>
+      <li>Jaydes — <em>Entry Four</em> <span>(Entry Log)</span></li>
+      <li>Juice WRLD — <em>Long Gone</em> <span>(Goodbye & Good Riddance)</span></li>
+      <li>Ken Carson — <em>THX</em> <span>(Single)</span></li>
+      <li>Kid Laroi — <em>A Cold Play</em> <span>(Before I Forget)</span></li>
+      <li>Lucki — <em>It’s Bool</em> <span>(Almost There)</span></li>
+      <li>PARTYNEXTDOOR — <em>Her Old Friends</em> <span>(Single)</span></li>
+      <li>Pixies — <em>Where Is My Mind</em> <span>(Surfer Rosa)</span></li>
+      <li>Plaqueboymax — <em>Fell Off</em> <span>(Too Much Music)</span></li>
+      <li>Tame Impala — <em>End of Summer</em> <span>(Single)</span></li>
+      <li>wifisfuneral — <em>WYA</em> <span>(Ethernet)</span></li>
+    </ul>
+  </div>
+
+  <div class="archive-box">
+    <h3>IMAGE ARCHIVE</h3>
+    <div class="image-grid">
+      <img src="https://via.placeholder.com/300x400" />
+      <img src="https://via.placeholder.com/300x400" />
+      <img src="https://via.placeholder.com/300x400" />
+      <img src="https://via.placeholder.com/300x400" />
+    </div>
+  </div>
+
+</section>
 
 <script>
-const images = [
-  "images/misfire-front.png",
-  "images/misfire-back.png"
-];
-
-let currentIndex = 0;
-const productImage = document.getElementById("productImage");
-
-function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
-  productImage.src = images[currentIndex];
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  productImage.src = images[currentIndex];
-}
-
-const buyBtn = document.getElementById('buyBtn');
-const sizeSelect = document.getElementById('sizeSelect');
-
 const shopifyLinks = {
   S: "https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout",
   M: "https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout",
   L: "https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout",
-  XL: "https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout",
+  XL: "https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout"
 };
 
-buyBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  buyBtn.style.display = 'none';
-  sizeSelect.style.display = 'flex';
-});
-
-document.querySelectorAll('.size-select button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    window.location.href = shopifyLinks[btn.innerText];
+const sizeElements = document.querySelectorAll('.sizes span');
+sizeElements.forEach(size => {
+  size.addEventListener('click', () => {
+    const selected = size.getAttribute('data-size');
+    if (shopifyLinks[selected]) {
+      window.location.href = shopifyLinks[selected];
+    }
   });
 });
 </script>
