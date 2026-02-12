@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISFIRE — Inspiration</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:#f6f1e8;
+  color:#000;
+  font-family:'Libre Baskerville',serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:60px 30px 100px;
+}
+
+.back{
+  font-size:13px;
+  letter-spacing:1px;
+  text-decoration:none;
+  color:#000;
+  opacity:.6;
+  transition:.3s ease;
+  display:inline-block;
+  margin-bottom:60px;
+}
+
+.back:hover{opacity:1}
+
+h1{
+  font-size:28px;
+  font-weight:400;
+  margin-bottom:50px;
+  letter-spacing:2px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
+
+.grid img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  transition:opacity .3s ease;
+}
+
+.grid img:hover{
+  opacity:.85;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .grid{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">← BACK TO MISFIRE</a>
+
+<h1>INSPIRATION</h1>
+
+<div style="max-width:900px;margin:0 auto;">
+  <img src="images/inspo-collage.jpg" alt="Misfire Inspiration Collage" style="width:100%;height:auto;display:block;">
+</div>
+
+</div>
+
+</body>
+</html>
