@@ -180,10 +180,7 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Always show arrows on mobile */
-  .arrow {
-    opacity: 0.9;
-  }
+  
 }
 
   .file-grid {
@@ -285,6 +282,8 @@ const images = [
 ];
 
 let currentIndex = 0;
+let startX = 0;
+let endX = 0;
 
 function showImage(index) {
   document.getElementById('mainImage').src = images[index];
@@ -311,6 +310,26 @@ function toggleSection(id) {
     }
   });
 }
+
+// Swipe functionality for mobile
+const imageElement = document.getElementById('mainImage');
+
+imageElement.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+imageElement.addEventListener('touchmove', (e) => {
+  endX = e.touches[0].clientX;
+});
+
+imageElement.addEventListener('touchend', () => {
+  if (startX - endX > 50) {
+    nextImage();
+  }
+  if (endX - startX > 50) {
+    prevImage();
+  }
+});
 </script>
 
 </body>
