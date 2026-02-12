@@ -53,14 +53,20 @@ h1 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 28px;
+  font-size: 18px;
   cursor: pointer;
-  padding: 10px;
+  padding: 6px;
   user-select: none;
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
 }
 
-.arrow.left { left: -40px; }
-.arrow.right { right: -40px; }
+.arrow:hover {
+  opacity: 0.8;
+}
+
+.arrow.left { left: 10px; }
+.arrow.right { right: 10px; }
 
 .details { font-style: normal; }
 
@@ -177,7 +183,7 @@ footer {
   <div class="main">
     <div class="image-wrapper">
       <span class="arrow left" onclick="prevImage()">&#8592;</span>
-      <img id="mainImage" src="https://via.placeholder.com/650x800?text=Product" class="product-image">
+      <img id="mainImage" src="misfire.nateshot.png" class="product-image">
       <span class="arrow right" onclick="nextImage()">&#8594;</span>
     </div>
 
@@ -255,9 +261,10 @@ footer {
 
 <script>
 const images = [
-  "https://via.placeholder.com/650x800?text=Product",
-  "https://via.placeholder.com/650x800?text=Front",
-  "https://via.placeholder.com/650x800?text=Back"
+  "misfire.nateshot.png",
+  "misfirefront.png",
+  "misfireback.png",
+  "misfire.frontback.png"
 ];
 
 let currentIndex = 0;
@@ -291,3 +298,4 @@ function toggleSection(id) {
 
 </body>
 </html>
+
