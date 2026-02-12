@@ -53,12 +53,20 @@ h1 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 18px;
+  font-size: 22px;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
   user-select: none;
-  opacity: 0.4;
+  opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 10;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  border-radius: 50%;
+}
+
+.image-wrapper:hover .arrow {
+  opacity: 1;
 }
 
 .arrow:hover {
@@ -167,6 +175,16 @@ footer {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+
+  .file-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Always show arrows on mobile */
+  .arrow {
+    opacity: 0.9;
+  }
+}
 
   .file-grid {
     grid-template-columns: repeat(2, 1fr);
