@@ -71,10 +71,6 @@ h1 {
   }
 }
 
-.arrow:hover {
-  opacity: 0.8;
-}
-
 .arrow.left { left: 10px; }
 .arrow.right { right: 10px; }
 
@@ -132,37 +128,14 @@ h1 {
   padding: 18px;
   font-size: 13px;
   text-align: center;
-  cursor: pointer;
+  text-decoration: none;
+  color: #1a1a1a;
+  display: block;
 }
 
 .file:hover {
   background: #1a1a1a;
   color: #f4efe6;
-}
-
-.expand-section {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s ease, max-height 0.4s ease;
-  margin-top: 0;
-}
-
-.expand-section.active {
-  opacity: 1;
-  max-height: 2000px;
-  margin-top: 20px;
-}
-
-.expand-section img {
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 15px;
-}
-
-.audio-list div {
-  margin-bottom: 8px;
-  font-size: 14px;
 }
 
 footer {
@@ -177,13 +150,6 @@ footer {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
-  .file-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  
-}
 
   .file-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -215,7 +181,10 @@ footer {
 
       <div class="shipping-note">Size up if in between sizes</div>
       <div class="shipping-note">Free shipping on NYC orders</div>
-      <div class="shipping-note">Ships Feb 16th</div>
+      <div class="shipping-note">Ships week of Feb 16th</div>
+      <div class="shipping-note">
+        Returns accepted for damaged or incorrect items within 7 days of delivery.
+      </div>
 
       <div class="material">Material — 100% Cotton</div>
 
@@ -228,45 +197,10 @@ footer {
 
   <div class="files">
     <div class="file-grid">
-      <div class="file" onclick="toggleSection('sketches')">MISFIRE_SKETCHES</div>
-      <div class="file" onclick="toggleSection('inspo')">MISFIRE_INSPO</div>
-      <div class="file" onclick="toggleSection('process')">MISFIRE_PROCESS</div>
-      <div class="file" onclick="toggleSection('audio')">MISFIRE_AUDIO</div>
-    </div>
-
-    <div id="sketches" class="expand-section">
-      <img src="https://via.placeholder.com/500x600?text=Sketch">
-    </div>
-
-    <div id="inspo" class="expand-section">
-      <img src="https://via.placeholder.com/500x600?text=Inspo+1">
-      <img src="https://via.placeholder.com/500x600?text=Inspo+2">
-      <img src="https://via.placeholder.com/500x600?text=Inspo+3">
-      <img src="https://via.placeholder.com/500x600?text=Inspo+4">
-    </div>
-
-    <div id="process" class="expand-section">
-      <img src="https://via.placeholder.com/500x600?text=Process+1">
-      <img src="https://via.placeholder.com/500x600?text=Process+2">
-    </div>
-
-    <div id="audio" class="expand-section audio-list">
-      <div style="margin-bottom:15px; max-width:600px; line-height:1.6;">
-        Rotation.
-      </div>
-      <div>Kid Laroi — A Coldplay</div>
-      <div>Playboi Carti — Long Time</div>
-      <div>Drake — Jaded</div>
-      <div>Ken Carson — Thx</div>
-      <div>Juice WRLD — Long Gone</div>
-      <div>Bad Bunny — Bokete</div>
-      <div>Plaqueboymax — Fell Off</div>
-      <div>Lucki — It’s Bool</div>
-      <div>Tame Impala — End of Summer</div>
-      <div>Eem Triplin — Stephanie</div>
-      <div>J. Cole — Love Her Again</div>
-      <div>Pixies — Where Is My Mind</div>
-      <div>Trippie Redd — Till the End of Time</div>
+      <a href="sketches.html" class="file">MISFIRE_SKETCHES</a>
+      <a href="inspo.html" class="file">MISFIRE_INSPO</a>
+      <a href="process.html" class="file">MISFIRE_PROCESS</a>
+      <a href="audio.html" class="file">MISFIRE_AUDIO</a>
     </div>
   </div>
 
@@ -284,8 +218,6 @@ const images = [
 ];
 
 let currentIndex = 0;
-let startX = 0;
-let endX = 0;
 
 function showImage(index) {
   document.getElementById('mainImage').src = images[index];
@@ -301,19 +233,8 @@ function prevImage() {
   showImage(currentIndex);
 }
 
-function toggleSection(id) {
-  const sections = document.querySelectorAll('.expand-section');
-
-  sections.forEach(section => {
-    if (section.id === id) {
-      section.classList.toggle('active');
-    } else {
-      section.classList.remove('active');
-    }
-  });
-}
-
-// Swipe functionality for mobile
+let startX = 0;
+let endX = 0;
 const imageElement = document.getElementById('mainImage');
 
 imageElement.addEventListener('touchstart', (e) => {
@@ -325,12 +246,8 @@ imageElement.addEventListener('touchmove', (e) => {
 });
 
 imageElement.addEventListener('touchend', () => {
-  if (startX - endX > 50) {
-    nextImage();
-  }
-  if (endX - startX > 50) {
-    prevImage();
-  }
+  if (startX - endX > 50) nextImage();
+  if (endX - startX > 50) prevImage();
 });
 </script>
 
