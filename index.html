@@ -60,8 +60,88 @@ header{position:relative;display:flex;align-items:center;justify-content:center;
 .site-footer{border-top:1px solid #eee;padding:40px 60px;margin-top:60px}
 .footer-inner{max-width:1200px;margin:0 auto;font-size:11px;letter-spacing:2px;text-align:center;opacity:.7}
 
-@media(max-width:1000px){
-.hero{grid-template-columns:1fr;padding:0 30px}
+@media(max-width:768px){
+
+/* APP-LIKE HEADER */
+header{
+position:sticky;
+top:0;
+flex-direction:row;
+justify-content:space-between;
+padding:14px 18px;
+height:56px;
+border-bottom:1px solid #eee;
+}
+
+.header-center h1{
+font-size:12px;
+letter-spacing:3px;
+}
+.header-center p{
+display:none;
+}
+
+.header-left{
+position:static;
+gap:14px;
+}
+
+.header-left .dropdown{
+font-size:9px;
+letter-spacing:2px;
+}
+
+.header-right{
+position:static;
+opactiy:1;
+}
+
+.header-right span{
+display:none;
+}
+
+.header-right svg{
+width:20px;
+height:20px;
+}
+
+/* HERO TIGHTER */
+.hero{
+grid-template-columns:1fr;
+padding:0 18px;
+margin:40px auto;
+}
+
+.product-column img{
+width:100%;
+max-width:380px;
+}
+
+.info-column{
+padding-right:0;
+margin-top:24px;
+}
+
+/* FILE GRID STACK CLEAN */
+.file-index-section{
+grid-template-columns:1fr;
+gap:18px;
+margin:60px auto;
+padding:0 18px;
+}
+
+.file-item{
+padding:40px 20px;
+}
+
+.dropdown-content{
+width:100vw;
+left:0;
+right:0;
+border-left:none;
+border-right:none;
+}
+}
 .info-column{padding-right:0;margin-top:40px}
 header{padding:30px}
 .header-left{left:30px}
@@ -212,4 +292,3 @@ alert("Access Denied.");
 
 </body>
 </html>
-
