@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MISFIRE 001</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #f4efe6;
+  color: #1a1a1a;
+  font-family: "Libre Baskerville", serif;
+  font-style: italic;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 30px;
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: 4px;
+  margin-bottom: 40px;
+  font-size: 22px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: start;
+}
+
+.image-wrapper {
+  position: relative;
+  max-width: 650px;
+}
+
+.product-image {
+  width: 100%;
+  display: block;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+
+.arrow.left { left: -40px; }
+.arrow.right { right: -40px; }
+
+.details { font-style: normal; }
+
+.price {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+.sizes button {
+  background: transparent;
+  border: 1px solid #1a1a1a;
+  color: #1a1a1a;
+  padding: 8px 14px;
+  margin: 6px 6px 6px 0;
+  cursor: pointer;
+}
+
+.sizes button:hover {
+  background: #1a1a1a;
+  color: #f4efe6;
+}
+
+.shipping-note {
+  font-size: 13px;
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+.material {
+  margin-top: 20px;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.authors-note {
+  margin-top: 30px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.files {
+  margin-top: 100px;
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.file {
+  border: 1px solid #1a1a1a;
+  padding: 18px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file:hover {
+  background: #1a1a1a;
+  color: #f4efe6;
+}
+
+.expand-section {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+  margin-top: 0;
+}
+
+.expand-section.active {
+  opacity: 1;
+  max-height: 2000px;
+  margin-top: 20px;
+}
+
+.expand-section img {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 15px;
+}
+
+.audio-list div {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+footer {
+  margin-top: 100px;
+  font-size: 12px;
+  opacity: 0.6;
+  text-align: center;
+}
+
+@media(max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .file-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>MISFIRE</h1>
+
+  <div class="main">
+    <div class="image-wrapper">
+      <span class="arrow left" onclick="prevImage()">&#8592;</span>
+      <img id="mainImage" src="https://via.placeholder.com/650x800?text=Product" class="product-image">
+      <span class="arrow right" onclick="nextImage()">&#8594;</span>
+    </div>
+
+    <div class="details">
+      <div class="price">$28.00</div>
+
+      <div class="sizes">
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout'">S</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout'">M</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout'">L</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout'">XL</button>
+      </div>
+
+      <div class="shipping-note">Size up if in between sizes</div>
+      <div class="shipping-note">Free shipping on NYC orders</div>
+      <div class="shipping-note">Ships Feb 16th</div>
+
+      <div class="material">Material — 100% Cotton</div>
+
+      <div class="authors-note">
+        This project exists somewhere between intention and accident.
+        Misfire is not a mistake. It is documentation.
+      </div>
+    </div>
+  </div>
+
+  <div class="files">
+    <div class="file-grid">
+      <div class="file" onclick="toggleSection('sketches')">MISFIRE_SKETCHES</div>
+      <div class="file" onclick="toggleSection('inspo')">MISFIRE_INSPO</div>
+      <div class="file" onclick="toggleSection('process')">MISFIRE_PROCESS</div>
+      <div class="file" onclick="toggleSection('audio')">MISFIRE_AUDIO</div>
+    </div>
+
+    <div id="sketches" class="expand-section">
+      <img src="https://via.placeholder.com/500x600?text=Sketch">
+    </div>
+
+    <div id="inspo" class="expand-section">
+      <img src="https://via.placeholder.com/500x600?text=Inspo+1">
+      <img src="https://via.placeholder.com/500x600?text=Inspo+2">
+      <img src="https://via.placeholder.com/500x600?text=Inspo+3">
+      <img src="https://via.placeholder.com/500x600?text=Inspo+4">
+    </div>
+
+    <div id="process" class="expand-section">
+      <img src="https://via.placeholder.com/500x600?text=Process+1">
+      <img src="https://via.placeholder.com/500x600?text=Process+2">
+    </div>
+
+    <div id="audio" class="expand-section audio-list">
+      <div style="margin-bottom:15px; max-width:600px; line-height:1.6;">
+        Rotation.
+      </div>
+      <div>Kid Laroi — A Coldplay</div>
+      <div>Playboi Carti — Long Time</div>
+      <div>Drake — Jaded</div>
+      <div>Ken Carson — Thx</div>
+      <div>Juice WRLD — Long Gone</div>
+      <div>Bad Bunny — Bokete</div>
+      <div>Plaqueboymax — Fell Off</div>
+      <div>Lucki — It’s Bool</div>
+      <div>Tame Impala — End of Summer</div>
+      <div>Eem Triplin — Stephanie</div>
+      <div>J. Cole — Love Her Again</div>
+      <div>Pixies — Where Is My Mind</div>
+      <div>Trippie Redd — Till the End of Time</div>
+    </div>
+  </div>
+
+  <footer>
+    Presented by Cloth Collective — All Rights Reserved
+  </footer>
+</div>
+
+<script>
+const images = [
+  "https://via.placeholder.com/650x800?text=Product",
+  "https://via.placeholder.com/650x800?text=Front",
+  "https://via.placeholder.com/650x800?text=Back"
+];
+
+let currentIndex = 0;
+
+function showImage(index) {
+  document.getElementById('mainImage').src = images[index];
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % images.length;
+  showImage(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  showImage(currentIndex);
+}
+
+function toggleSection(id) {
+  const sections = document.querySelectorAll('.expand-section');
+
+  sections.forEach(section => {
+    if (section.id === id) {
+      section.classList.toggle('active');
+    } else {
+      section.classList.remove('active');
+    }
+  });
+}
+</script>
+
+</body>
+</html>
