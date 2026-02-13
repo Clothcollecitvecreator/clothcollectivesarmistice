@@ -1,20 +1,179 @@
-PRODUCTION LOG — MISFIRE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MISFIRE — Process</title>
 
-01.16 — Initial sketch logged
-01.17 — Blank selected / measurements confirmed
-01.17 — Type finalized
-01.20 — Sample run initiated
-01.23 — Print fault detected / HOLD
-01.27 — Sample approved
-02.01 — Bulk blanks delayed
-02.07 — Final unit cleared
-02.12 — Site deployment complete
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:#f6f1e8;
+  color:#000;
+  font-family:'Libre Baskerville',serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+.container{
+  max-width:760px;
+  margin:0 auto;
+  padding:60px 30px 140px;
+}
+
+@media(max-width:768px){
+  .container{
+    padding:40px 18px 100px;
+  }
+}
+
+.back{
+  font-size:13px;
+  letter-spacing:1px;
+  text-decoration:none;
+  color:#000;
+  opacity:.6;
+  transition:.3s ease;
+  display:inline-block;
+  margin-bottom:80px;
+}
+
+.back:hover{opacity:1}
+
+h1{
+  font-size:24px;
+  font-weight:700;
+  margin-bottom:70px;
+  letter-spacing:4px;
+}
+
+@media(max-width:768px){
+  h1{
+    font-size:18px;
+    letter-spacing:2px;
+    margin-bottom:50px;
+  }
+}
+
+.log{
+  font-size:14px;
+  line-height:2.2;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:90px;
+}
+
+@media(max-width:768px){
+  .log{
+    font-size:12px;
+    line-height:1.9;
+    letter-spacing:1px;
+    margin-bottom:60px;
+  }
+}
+
+.meta{
+  margin-top:60px;
+  font-size:13px;
+  line-height:2.2;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+/* Conveyor Image Section */
+.process-image{
+  margin:80px 0 60px 0;
+  overflow:hidden;
+  border-top:1px solid rgba(0,0,0,.2);
+  border-bottom:1px solid rgba(0,0,0,.2);
+  padding:25px 0;
+}
+
+.belt-track{
+  display:flex;
+  width:200%;
+  animation:scrollBelt 15s linear infinite;
+}
+
+.belt-track img{
+  width:50%;
+  height:auto;
+  display:block;
+}
+
+@keyframes scrollBelt{
+  0%{ transform:translateX(0); }
+  100%{ transform:translateX(-50%); }
+}
+
+@media(max-width:768px){
+  .belt-track{
+    animation:scrollBelt 10s linear infinite;
+  }
+}
+
+.meta span{
+  display:block;
+}
+
+.status{
+  margin-top:40px;
+  font-weight:700;
+}
+
+@media(max-width:768px){
+  .container{
+    padding:50px 20px 120px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<a href="index.html" class="back">← BACK TO MISFIRE</a>
+
+<h1>PRODUCTION LOG — MISFIRE</h1>
+
+<div class="log">
+01.16 — Initial sketch logged<br>
+01.17 — Blank selected / measurements confirmed<br>
+01.17 — Type finalized<br>
+01.20 — Sample run initiated<br>
+01.23 — Print fault detected / HOLD<br>
+01.27 — Sample approved<br>
+02.01 — Bulk blanks delayed<br>
+02.07 — Final unit cleared<br>
+02.12 — Site deployment complete<br>
 02.14 — Product release
+</div>
 
-RUN: 001
-ORDER STATUS: Pending
-(Approved 02.14)
-UNIT COUNT: XX
-METHOD: Screen Print / 1C
-ORIGIN: NYC
-STATUS: Released
+<div class="process-image">
+  <div class="belt-track">
+    <img src="images/production-belt.png" alt="Misfire Production Box">
+    <img src="images/production-belt.png" alt="Misfire Production Box">
+  </div>
+</div>
+
+<div class="meta">
+</div>
+
+<div class="meta">
+<span>RUN: 001</span>
+<span>ORDER STATUS: Pending</span>
+<span>(Approved 02.14)</span>
+<span>UNIT COUNT: XX</span>
+<span>METHOD: Screen Print / 1C</span>
+<span>ORIGIN: NYC</span>
+
+
+</div>
+
+</div>
+
+</body>
+</html>
