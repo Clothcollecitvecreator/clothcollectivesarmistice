@@ -18,130 +18,105 @@ body{
 }
 
 .container{
-  max-width:760px;
+  max-width:680px;
   margin:0 auto;
-  padding:60px 30px 140px;
+  padding:28px 18px 50px;
 }
 
 @media(max-width:768px){
-  .container{
-    padding:40px 18px 100px;
-  }
+  .container{ padding:40px 18px 100px; }
 }
 
 .back{
-  font-size:13px;
-  letter-spacing:1px;
+  font-size:11px;
+  letter-spacing:.8px;
   text-decoration:none;
   color:#000;
   opacity:.6;
   transition:.3s ease;
   display:inline-block;
-  margin-bottom:80px;
+  margin-bottom:22px;
 }
-
 .back:hover{opacity:1}
 
 h1{
-  font-size:24px;
+  font-size:20px;
   font-weight:700;
-  margin-bottom:70px;
-  letter-spacing:4px;
+  margin-bottom:22px;
+  letter-spacing:2px;
 }
 
 @media(max-width:768px){
-  h1{
-    font-size:18px;
-    letter-spacing:2px;
-    margin-bottom:50px;
-  }
+  h1{ font-size:18px; letter-spacing:2px; margin-bottom:50px; }
 }
 
 .log{
-  font-size:14px;
-  line-height:2.2;
-  letter-spacing:2px;
+  font-size:12px;
+  line-height:1.6;
+  letter-spacing:1.2px;
   text-transform:uppercase;
-  margin-bottom:90px;
+  margin-bottom:22px;
 }
 
 @media(max-width:768px){
-  .log{
-    font-size:12px;
-    line-height:1.9;
-    letter-spacing:1px;
-    margin-bottom:60px;
-  }
+  .log{ font-size:12px; line-height:1.9; letter-spacing:1px; margin-bottom:60px; }
+}
+
+/* Countdown */
+.countdown{
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+@media(max-width:768px){
+  .countdown{ font-size:11px; letter-spacing:1.5px; }
+}
+
+/* Percentage Progress Bar */
+.process-image{ margin:12px 0 18px 0; }
+
+.progress{
+  width:100%;
+  height:22px;
+  background:rgba(0,0,0,.08);
+  border:1px solid rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#000;
+  transition:width .6s ease;
+}
+
+.progress-label{
+  margin-top:6px;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+@media(max-width:768px){
+  .progress{ height:20px; }
+  .progress-label{ font-size:10px; letter-spacing:1px; }
 }
 
 .meta{
-  margin-top:60px;
-  font-size:13px;
-  line-height:2.2;
-  letter-spacing:2px;
+  margin-top:18px;
+  font-size:11px;
+  line-height:1.6;
+  letter-spacing:1.2px;
   text-transform:uppercase;
 }
 
-@media(max-width:768px){
-  .meta{
-    font-size:11px;
-    line-height:1.8;
-    letter-spacing:1px;
-  }
-}
-
-/* Conveyor Image Section */
-.process-image{
-  margin:70px 0 50px 0;
-  overflow:hidden;
-  border-top:1px solid rgba(0,0,0,.2);
-  border-bottom:1px solid rgba(0,0,0,.2);
-  padding:20px 0;
-}
+.meta span{ display:block; }
 
 @media(max-width:768px){
-  .process-image{
-    margin:50px 0 40px 0;
-    padding:15px 0;
-  }
-}
-
-.belt-track{
-  display:flex;
-  width:200%;
-  animation:scrollBelt 15s linear infinite;
-}
-
-.belt-track img{
-  width:50%;
-  height:auto;
-  display:block;
-}
-
-@keyframes scrollBelt{
-  0%{ transform:translateX(0); }
-  100%{ transform:translateX(-50%); }
-}
-
-@media(max-width:768px){
-  .belt-track{
-    animation:scrollBelt 10s linear infinite;
-  }
-}
-
-.meta span{
-  display:block;
-}
-
-.status{
-  margin-top:40px;
-  font-weight:700;
-}
-
-@media(max-width:768px){
-  .container{
-    padding:50px 20px 120px;
-  }
+  .meta{ font-size:11px; line-height:1.8; letter-spacing:1px; }
 }
 
 </style>
@@ -167,14 +142,16 @@ h1{
 02.14 — Product release
 </div>
 
-<div class="process-image">
-  <div class="belt-track">
-    <img src="images/production-belt (1).png" alt="Misfire Production Box">
-    <img src="images/produ" alt="Misfire Production Box">
-  </div>
+<div class="countdown" id="countdownTimer">
+00d 00h 00m 00s — Until Release
 </div>
 
-
+<div class="process-image">
+  <div class="progress">
+    <div class="progress-fill" id="progressBar"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">0% to order fulfilled</div>
+</div>
 
 <div class="meta">
 <span>RUN: 001</span>
@@ -183,11 +160,62 @@ h1{
 <span>UNIT COUNT: XX</span>
 <span>METHOD: Screen Print / 1C</span>
 <span>ORIGIN: NYC</span>
-
-
 </div>
 
 </div>
+
+<script>
+// ===== CONFIG =====
+const START_ISO = '2026-01-16T00:00:00-05:00';
+const COMPLETE_ISO = '2026-02-18T00:00:00-05:00';
+const RELEASE_ISO = '2026-02-14T20:00:00-05:00';
+
+const bar = document.getElementById('progressBar');
+const label = document.getElementById('progressLabel');
+const countdownEl = document.getElementById('countdownTimer');
+
+function updateAll(){
+  const start = new Date(START_ISO);
+  const end = new Date(COMPLETE_ISO);
+  const release = new Date(RELEASE_ISO);
+  const now = new Date();
+
+  // ===== Percentage Progress =====
+  const total = end - start;
+  const elapsed = Math.max(0, Math.min(total, now - start));
+  const pct = total > 0 ? (elapsed / total) * 100 : 0;
+
+  bar.style.width = pct.toFixed(2) + '%';
+
+  if(now >= end){
+    label.textContent = '100% — Order fulfilled';
+  } else {
+    label.textContent = pct.toFixed(1) + '% to order fulfilled';
+  }
+
+  // ===== Countdown to Feb 14 8PM =====
+  const diff = release - now;
+
+  if(diff <= 0){
+    countdownEl.textContent = 'Release live';
+  } else {
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    countdownEl.textContent =
+      String(d).padStart(2,'0') + 'd ' +
+      String(h).padStart(2,'0') + 'h ' +
+      String(m).padStart(2,'0') + 'm ' +
+      String(s).padStart(2,'0') + 's — Until Release';
+  }
+}
+
+updateAll();
+setInterval(updateAll, 1000);
+</script>
 
 </body>
 </html>
+
