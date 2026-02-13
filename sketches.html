@@ -18,9 +18,10 @@ body{
 }
 
 .container{
-  max-width:1100px;
+  max-width:900px;
   margin:0 auto;
-  padding:60px 30px 100px;
+  padding:60px 30px 140px;
+  text-align:center;
 }
 
 .back{
@@ -39,33 +40,33 @@ body{
 h1{
   font-size:28px;
   font-weight:400;
-  margin-bottom:50px;
+  margin-bottom:80px;
   letter-spacing:2px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:40px;
+.image-wrapper{
+  max-width:650px;
+  margin:0 auto;
 }
 
-.grid img{
+.image-wrapper img{
   width:100%;
   height:auto;
   display:block;
-  object-fit:cover;
   transition:opacity .3s ease;
 }
 
-.grid img:hover{
-  opacity:.8;
+.image-wrapper img:hover{
+  opacity:.9;
 }
 
-/* Mobile */
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:1fr;
-    gap:30px;
+  .container{
+    padding:50px 20px 120px;
+  }
+
+  h1{
+    margin-bottom:60px;
   }
 }
 
@@ -79,13 +80,8 @@ h1{
 
 <h1>SKETCHES</h1>
 
-<div class="grid">
-  <img src="images/sketch1.png" alt="Misfire Sketch 1">
-  <img src="images/sketch2.png" alt="Misfire Sketch 2">
-  <img src="images/sketch3.png" alt="Misfire Sketch 3">
-  <img src="images/sketch4.png" alt="Misfire Sketch 4">
-  <img src="images/sketch5.png" alt="Misfire Sketch 5">
-  <img src="images/sketch6.png" alt="Misfire Sketch 6">
+<div class="image-wrapper">
+  <img src="images/sketch1.png" alt="Misfire Sketch">
 </div>
 
 </div>
