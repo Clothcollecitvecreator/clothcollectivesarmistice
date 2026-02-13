@@ -39,36 +39,143 @@ body{
 h1{
   font-size:28px;
   font-weight:400;
-  margin-bottom:50px;
+  margin-bottom:60px;
   letter-spacing:2px;
+  text-align:center;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:40px;
+/* Quote */
+.quote{
+  max-width:700px;
+  margin:0 auto 30px auto;
+  text-align:center;
+  font-size:22px;
+  line-height:1.6;
 }
 
-.grid img{
+.credit{
+  text-align:center;
+  font-size:14px;
+  opacity:.6;
+  margin-bottom:100px;
+}
+
+/* Timeline */
+.timeline{
+  max-width:900px;
+  margin:140px auto 0 auto;
+  position:relative;
+  padding-top:80px;
+  padding-bottom:40px;
+  text-align:center;
+}
+
+.line{
+  height:1px;
+  background:#000;
   width:100%;
-  height:auto;
-  display:block;
-  object-fit:cover;
-  transition:opacity .3s ease;
+  position:relative;
 }
 
-.grid img:hover{
-  opacity:.85;
+.point{
+  position:absolute;
+  top:-6px;
+  width:12px;
+  height:12px;
+  background:#000;
+  border-radius:50%;
 }
+
+.point-label{
+  position:absolute;
+  top:28px;
+  font-size:12px;
+  letter-spacing:1px;
+  transform:translateX(-50%);
+  white-space:nowrap;
+}
+
+.you-here{
+  position:absolute;
+  top:-40px;
+  font-size:11px;
+  letter-spacing:1px;
+  transform:translateX(-50%);
+  font-weight:700;
+}
+
+/* Positioning */
+.misfire{ left:10%; }
+.project1{ left:30%; }
+.project2{ left:50%; }
+.project3{ left:70%; }
+.armistice{ left:90%; }
+
+.misfire-label{ left:10%; }
+.project1-label{ left:30%; }
+.project2-label{ left:50%; }
+.project3-label{ left:70%; }
+.armistice-label{
+  left:90%;
+  font-weight:700;
+}
+
+.glitch{
+  position:relative;
+  display:inline-block;
+}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  opacity:0.8;
+}
+
+.glitch::before{
+  transform:translate(1px, -1px);
+  color:#c00;
+  animation:glitch1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after{
+  transform:translate(-1px, 1px);
+  color:#0066ff;
+  animation:glitch2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch1{
+  0%{clip-path:inset(0 0 80% 0);} 
+  25%{clip-path:inset(10% 0 60% 0);} 
+  50%{clip-path:inset(40% 0 20% 0);} 
+  75%{clip-path:inset(60% 0 10% 0);} 
+  100%{clip-path:inset(80% 0 0 0);} 
+}
+
+@keyframes glitch2{
+  0%{clip-path:inset(80% 0 0 0);} 
+  25%{clip-path:inset(60% 0 10% 0);} 
+  50%{clip-path:inset(20% 0 40% 0);} 
+  75%{clip-path:inset(10% 0 60% 0);} 
+  100%{clip-path:inset(0 0 80% 0);} 
+}
+
+.you-here-label{ left:10%; }
 
 /* Mobile */
 @media(max-width:768px){
-  .grid{
-    grid-template-columns:1fr;
-    gap:30px;
-  }
-}
 
+  .quote{
+    font-size:18px;
+  }
+
+  .timeline{
+    padding-top:60px;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -79,11 +186,36 @@ h1{
 
 <h1>INSPIRATION</h1>
 
-<div style="max-width:900px;margin:0 auto;">
-  <img src="images/inspo-collage.png" alt="Misfire Inspiration Collage" style="width:100%;height:auto;display:block;">
+<p class="quote">
+“Perfection delays progress. The only real failure is not creating at all.”
+</p>
+
+<p class="credit">
+— Virgil Abloh
+</p>
+
+<div class="timeline">
+  <div class="line"></div>
+
+  <div class="point misfire"></div>
+  <div class="you-here you-here-label"><span class="glitch" data-text="YOU ARE HERE">YOU ARE HERE</span></div>
+  <div class="point-label misfire-label"><span class="glitch" data-text="MISFIRE">MISFIRE</span></div>
+
+  <div class="point project1"></div>
+  <div class="point-label project1-label"><span class="glitch" data-text="UNTITLED PROJECT 01">UNTITLED PROJECT 01</span></div>
+
+  <div class="point project2"></div>
+  <div class="point-label project2-label"><span class="glitch" data-text="UNTITLED PROJECT 02">UNTITLED PROJECT 02</span></div>
+
+  <div class="point project3"></div>
+  <div class="point-label project3-label"><span class="glitch" data-text="UNTITLED PROJECT 03">UNTITLED PROJECT 03</span></div>
+
+  <div class="point armistice"></div>
+  <div class="point-label armistice-label"><span class="glitch" data-text="ARMISTICE">ARMISTICE</span></div>
 </div>
 
 </div>
 
 </body>
 </html>
+
