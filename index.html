@@ -88,13 +88,6 @@ h1 {
   padding: 8px 14px;
   margin: 6px 6px 6px 0;
   cursor: pointer;
-  transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
-}
-
-.sizes button.sold-out {
-  opacity: 0.4;
-  cursor: not-allowed;
-  text-decoration: line-through;
 }
 
 .sizes button:hover {
@@ -104,22 +97,18 @@ h1 {
 
 .shipping-note {
   font-size: 13px;
-  margin-top: 6px;
+  margin-top: 8px;
   opacity: 0.8;
 }
 
-.specs {
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(0,0,0,0.15);
-  font-size: 12px;
+.material {
+  margin-top: 20px;
+  font-size: 13px;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  opacity: 0.7;
 }
 
 .authors-note {
-  margin-top: 18px;
+  margin-top: 30px;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -184,44 +173,35 @@ footer {
       <div class="price">$28.00</div>
 
       <div class="sizes">
-
-        <button data-variant="49360194765037" onclick="addToCart('49360194765037')">S</button>
-        <button data-variant="49360194797805" onclick="addToCart('49360194797805')">M</button>
-        <button data-variant="49360194830573" onclick="addToCart('49360194830573')">L</button>
-        <button data-variant="49360194863341" onclick="addToCart('49360194863341')">XL</button>
-
-        <div style="margin-top:18px;">
-          <label style="font-size:13px;">Quantity</label><br>
-          <input type="number" id="quantity" value="1" min="1" max="2"
-            style="width:60px; padding:6px; margin-top:6px; border:1px solid #1a1a1a; background:transparent;">
-        </div>
-
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout'">S</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout'">M</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout'">L</button>
+        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout'">XL</button>
       </div>
 
-      
+      <div class="shipping-note" style="font-size:15px; font-weight:500;">
+  Size up if in between sizes</div>
       <div class="shipping-note">Free shipping on NYC orders</div>
       <div class="shipping-note">Ships week of Feb 16th</div>
       <div class="shipping-note">
         Returns accepted for damaged or incorrect items within 7 days of delivery.
       </div>
 
-      <div class="specs">
-        SIZE UP IF IN BETWEEN SIZES<br>
-        100% COTTON
-      </div>
+      <div class="material">Material — 100% Cotton</div>
 
       <div class="authors-note">
-        <strong>AUTHOR'S NOTE</strong><br>
-        Misfire was never part of a plan. It came together to help me express something I couldn’t articulate at the time. Consider it more like a mixtape — made in the middle of it, not after it was figured out. The heart design sits in that space — not broken, not whole, just honest. It reflects what it feels like when a connection shifts and you’re left adjusting to the quiet that follows. The imagery explains what I couldn’t at the time. Built in one month, the process moved the same way: long nights, restarts, reflection, slowly making sense of it. Misfire ends with this design, living through those who wear it as a documented moment and a step toward something steadier. The search for Armistice continues.
+        <strong>AUTHOR'S NOTE</strong><br><br>
+        Misfire wasn’t planned. It formed quickly as a way to give shape to an experience. When connection changes, it leaves a space behind — not dramatic, just present. This project sits in that space. It was built in a month, and the process reflected it: failed prints, missed timelines, restarts. Releasing it on Valentine’s Day made sense — not as commentary, just context. It’s a one-off. A moment documented. The search for Armistice continues.
+      </div>
     </div>
   </div>
 
   <div class="files">
     <div class="file-grid">
-      <a class='file' href='/sketches'>MISFIRE_SKETCHES</a>
-      <a class='file' href='/inspo'>MISFIRE_INSPO</a>
-      <a class='file' href='/process'>MISFIRE_PROCESS</a>
-      <a class='file' href='/audio'>MISFIRE_AUDIO</a>
+      <a href="sketches.html" class="file">MISFIRE_SKETCHES</a>
+      <a href="inspo.html" class="file">MISFIRE_INSPO</a>
+      <a href="process.html" class="file">MISFIRE_PROCESS</a>
+      <a href="audio.html" class="file">MISFIRE_AUDIO</a>
     </div>
   </div>
 
@@ -270,60 +250,6 @@ imageElement.addEventListener('touchend', () => {
   if (startX - endX > 50) nextImage();
   if (endX - startX > 50) prevImage();
 });
-
-let totalSelected = 0;
-
-async function checkVariantInventory() {
-  try {
-    const response = await fetch('https://misfire-project-001.myshopify.com/products/misfire-001.js');
-    const product = await response.json();
-
-    product.variants.forEach(variant => {
-      const button = document.querySelector(`[data-variant="${variant.id}"]`);
-      if (!button) return;
-
-      if (variant.inventory_quantity <= 0) {
-        button.classList.add('sold-out');
-        button.disabled = true;
-        button.innerText = button.innerText + ' — SOLD OUT';
-      }
-    });
-  } catch (error) {
-    console.error('Inventory check failed:', error);
-  }
-}
-
-checkVariantInventory();
-
-function addToCart(variantId) {
-  const qty = parseInt(document.getElementById('quantity').value);
-
-  if (qty < 1) return;
-
-  if (totalSelected + qty > 2) {
-    alert("Maximum 2 MISFIRE shirts per order.");
-    return;
-  }
-
-  fetch('https://misfire-project-001.myshopify.com/cart/add.js', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      id: variantId,
-      quantity: qty
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
-    totalSelected += qty;
-    window.location.href = "https://misfire-project-001.myshopify.com/cart";
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
 </script>
 
 </body>
