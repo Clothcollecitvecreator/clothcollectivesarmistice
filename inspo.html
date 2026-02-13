@@ -20,7 +20,7 @@ body{
 .container{
   max-width:1100px;
   margin:0 auto;
-  padding:60px 30px 100px;
+  padding:60px 30px 120px;
 }
 
 .back{
@@ -44,7 +44,6 @@ h1{
   text-align:center;
 }
 
-/* Quote */
 .quote{
   max-width:700px;
   margin:0 auto 30px auto;
@@ -57,17 +56,15 @@ h1{
   text-align:center;
   font-size:14px;
   opacity:.6;
-  margin-bottom:100px;
+  margin-bottom:120px;
 }
 
-/* Timeline */
+/* Desktop Timeline */
 .timeline{
   max-width:900px;
-  margin:140px auto 0 auto;
+  margin:0 auto;
   position:relative;
   padding-top:80px;
-  padding-bottom:40px;
-  text-align:center;
 }
 
 .line{
@@ -86,96 +83,49 @@ h1{
   border-radius:50%;
 }
 
-.point-label{
+.label{
   position:absolute;
-  top:28px;
+  top:30px;
   font-size:12px;
   letter-spacing:1px;
   transform:translateX(-50%);
   white-space:nowrap;
 }
 
-.you-here{
-  position:absolute;
-  top:-40px;
-  font-size:11px;
-  letter-spacing:1px;
-  transform:translateX(-50%);
-  font-weight:700;
-}
+.misfire{left:10%}
+.project1{left:30%}
+.project2{left:50%}
+.project3{left:70%}
+.armistice{left:90%}
 
-/* Positioning */
-.misfire{ left:10%; }
-.project1{ left:30%; }
-.project2{ left:50%; }
-.project3{ left:70%; }
-.armistice{ left:90%; }
-
-.misfire-label{ left:10%; }
-.project1-label{ left:30%; }
-.project2-label{ left:50%; }
-.project3-label{ left:70%; }
-.armistice-label{
-  left:90%;
-  font-weight:700;
-}
-
-.glitch{
-  position:relative;
-  display:inline-block;
-}
-
-.glitch::before,
-.glitch::after{
-  content:attr(data-text);
-  position:absolute;
-  left:0;
-  top:0;
-  opacity:0.8;
-}
-
-.glitch::before{
-  transform:translate(1px, -1px);
-  color:#c00;
-  animation:glitch1 2s infinite linear alternate-reverse;
-}
-
-.glitch::after{
-  transform:translate(-1px, 1px);
-  color:#0066ff;
-  animation:glitch2 2s infinite linear alternate-reverse;
-}
-
-@keyframes glitch1{
-  0%{clip-path:inset(0 0 80% 0);} 
-  25%{clip-path:inset(10% 0 60% 0);} 
-  50%{clip-path:inset(40% 0 20% 0);} 
-  75%{clip-path:inset(60% 0 10% 0);} 
-  100%{clip-path:inset(80% 0 0 0);} 
-}
-
-@keyframes glitch2{
-  0%{clip-path:inset(80% 0 0 0);} 
-  25%{clip-path:inset(60% 0 10% 0);} 
-  50%{clip-path:inset(20% 0 40% 0);} 
-  75%{clip-path:inset(10% 0 60% 0);} 
-  100%{clip-path:inset(0 0 80% 0);} 
-}
-
-.you-here-label{ left:10%; }
-
-/* Mobile */
+/* Mobile Timeline (Vertical Clean Version) */
 @media(max-width:768px){
 
-  .quote{
-    font-size:18px;
+  .timeline{
+    padding-top:0;
   }
 
-  .timeline{
-    padding-top:60px;
+  .line{
+    display:none;
+  }
+
+  .point{
+    position:relative;
+    margin:30px auto 10px auto;
+    top:0;
+  }
+
+  .label{
+    position:relative;
+    top:0;
+    left:0;
+    transform:none;
+    text-align:center;
+    margin-bottom:20px;
   }
 
 }
+
 </style>
 </head>
 <body>
@@ -198,24 +148,25 @@ h1{
   <div class="line"></div>
 
   <div class="point misfire"></div>
-  <div class="you-here you-here-label"><span class="glitch" data-text="YOU ARE HERE">YOU ARE HERE</span></div>
-  <div class="point-label misfire-label"><span class="glitch" data-text="MISFIRE">MISFIRE</span></div>
+  <div class="label" style="left:10%">MISFIRE — YOU ARE HERE</div>
 
   <div class="point project1"></div>
-  <div class="point-label project1-label"><span class="glitch" data-text="UNTITLED PROJECT 01">UNTITLED PROJECT 01</span></div>
+  <div class="label" style="left:30%">UNTITLED PROJECT 01</div>
 
   <div class="point project2"></div>
-  <div class="point-label project2-label"><span class="glitch" data-text="UNTITLED PROJECT 02">UNTITLED PROJECT 02</span></div>
+  <div class="label" style="left:50%">UNTITLED PROJECT 02</div>
 
   <div class="point project3"></div>
-  <div class="point-label project3-label"><span class="glitch" data-text="UNTITLED PROJECT 03">UNTITLED PROJECT 03</span></div>
+  <div class="label" style="left:70%">UNTITLED PROJECT 03</div>
 
   <div class="point armistice"></div>
-  <div class="point-label armistice-label"><span class="glitch" data-text="ARMISTICE">ARMISTICE</span></div>
+  <div class="label" style="left:90%; font-weight:700;">ARMISTICE</div>
+
 </div>
 
 </div>
 
 </body>
 </html>
+
 
