@@ -22,20 +22,42 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 50px 30px;
+  padding: 40px 30px;
+}
+
+header {
+  position: relative;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 h1 {
-  text-align: center;
   letter-spacing: 4px;
-  margin-bottom: 40px;
   font-size: 22px;
+  margin: 0;
+}
+
+.cart-link {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-link:hover {
+  opacity: 0.6;
 }
 
 .main {
   display: grid;
   grid-template-columns: 1fr 420px;
-  gap: 60px;
+  gap: 50px;
   align-items: start;
 }
 
@@ -78,7 +100,14 @@ h1 {
 
 .price {
   font-size: 28px;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
+}
+
+.size-label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+  opacity: 0.6;
 }
 
 .sizes button {
@@ -97,18 +126,22 @@ h1 {
 
 .shipping-note {
   font-size: 13px;
-  margin-top: 8px;
+  margin-top: 6px;
   opacity: 0.8;
 }
 
 .material {
-  margin-top: 20px;
-  font-size: 13px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  font-size: 12px;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
 .authors-note {
-  margin-top: 30px;
+  margin-top: 24px;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -160,7 +193,13 @@ footer {
 <body>
 
 <div class="container">
-  <h1>MISFIRE</h1>
+  <header>
+    <h1>MISFIRE</h1>
+    <a href="https://misfire-project-001.myshopify.com/cart" class="cart-link">
+      <span>🛒</span>
+      <span>Cart</span>
+    </a>
+  </header>
 
   <div class="main">
     <div class="image-wrapper">
@@ -172,26 +211,34 @@ footer {
     <div class="details">
       <div class="price">$28.00</div>
 
+      <div class="size-label">SIZE</div>
       <div class="sizes">
-        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194765037:1?checkout'">S</button>
-        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194797805:1?checkout'">M</button>
-        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194830573:1?checkout'">L</button>
-        <button onclick="window.location.href='https://misfire-project-001.myshopify.com/cart/49360194863341:1?checkout'">XL</button>
+        <button onclick="selectSize('49360194765037', this)">S</button>
+        <button onclick="selectSize('49360194797805', this)">M</button>
+        <button onclick="selectSize('49360194830573', this)">L</button>
+        <button onclick="selectSize('49360194863341', this)">XL</button>
       </div>
 
-      <div class="shipping-note" style="font-size:15px; font-weight:500;">
-  Size up if in between sizes</div>
+      <div style="margin-top:18px;">
+        <button id="addToCartBtn" onclick="addToCart()" style="padding:10px 18px; border:1px solid #1a1a1a; background:#1a1a1a; color:#f4efe6; cursor:pointer; opacity:0.4;" disabled>
+          ADD TO CART
+        </button>
+      </div>
+
+      <div class="shipping-note" style="margin-top:10px; font-size:12px; opacity:0.6;">
+        Select a size
+      </div>
+
+      <div class="material">SIZE UP IF IN BETWEEN SIZES<br>100% COTTON</div>
       <div class="shipping-note">Free shipping on NYC orders</div>
       <div class="shipping-note">Ships week of Feb 16th</div>
       <div class="shipping-note">
         Returns accepted for damaged or incorrect items within 7 days of delivery.
       </div>
 
-      <div class="material">Material — 100% Cotton</div>
-
       <div class="authors-note">
-        <strong>AUTHOR'S NOTE</strong><br><br>
-        Misfire wasn’t planned. It formed quickly as a way to give shape to an experience. When connection changes, it leaves a space behind — not dramatic, just present. This project sits in that space. It was built in a month, and the process reflected it: failed prints, missed timelines, restarts. Releasing it on Valentine’s Day made sense — not as commentary, just context. It’s a one-off. A moment documented. The search for Armistice continues.
+        <strong style="display:block; margin-bottom:8px;">AUTHOR'S NOTE</strong>
+        Misfire wasn’t mapped out in advance. It came together over a month as a way to express something I couldn’t fully explain at the time. It reflects what happens when a connection shifts and you’re left adjusting to what’s different, and the process moved the same way — restarts, second guesses, long nights figuring it out. Think of it like a mixtape made during the feeling, not after it was resolved. Misfire stands as a record of that moment, and from here the direction is steadier — the search for Armistice continues.
       </div>
     </div>
   </div>
@@ -250,8 +297,54 @@ imageElement.addEventListener('touchend', () => {
   if (startX - endX > 50) nextImage();
   if (endX - startX > 50) prevImage();
 });
+
+let selectedVariant = null;
+
+function selectSize(variantId, el) {
+  selectedVariant = variantId;
+
+  document.querySelectorAll('.sizes button').forEach(btn => {
+    btn.style.background = 'transparent';
+    btn.style.color = '#1a1a1a';
+  });
+
+  el.style.background = '#1a1a1a';
+  el.style.color = '#f4efe6';
+
+  const btn = document.getElementById('addToCartBtn');
+  btn.disabled = false;
+  btn.style.opacity = '1';
+}
+
+function addToCart() {
+  if (!selectedVariant) return;
+
+  fetch('https://misfire-project-001.myshopify.com/cart/add.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      id: selectedVariant,
+      quantity: 1
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(() => {
+    // Normal path → go to cart
+    window.location.href = 'https://misfire-project-001.myshopify.com/cart';
+  })
+  .catch(() => {
+    // Fallback path → use direct cart URL method
+    window.location.href = `https://misfire-project-001.myshopify.com/cart/${selectedVariant}:1`;
+  });
+}
 </script>
 
 </body>
 </html>
-
