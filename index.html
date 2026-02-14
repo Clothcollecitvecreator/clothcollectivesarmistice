@@ -26,7 +26,6 @@ body {
 }
 
 header {
-  position: relative;
   text-align: center;
   margin-bottom: 40px;
 }
@@ -35,17 +34,6 @@ h1 {
   letter-spacing: 4px;
   font-size: 22px;
   margin: 0;
-}
-
-
-  .cart-link svg {
-    width: 17px;
-    height: 17px;
-  }
-}
-
-.cart-link:hover {
-  opacity: 0.6;
 }
 
 .main {
@@ -111,9 +99,10 @@ h1 {
   padding: 8px 14px;
   margin: 6px 6px 6px 0;
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.sizes button:hover {
+.sizes button.active {
   background: #1a1a1a;
   color: #f4efe6;
 }
@@ -181,6 +170,10 @@ footer {
   .file-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .files {
+    margin-top: 40px;
+  }
 }
 </style>
 </head>
@@ -189,7 +182,6 @@ footer {
 <div class="container">
   <header>
     <h1>MISFIRE</h1>
-    
   </header>
 
   <div class="main">
@@ -211,13 +203,17 @@ footer {
       </div>
 
       <div style="margin-top:18px;">
-        <button id="addToCartBtn" onclick="addToCart()" style="padding:10px 18px; border:1px solid #1a1a1a; background:#1a1a1a; color:#f4efe6; cursor:pointer; opacity:0.4;" disabled>
+        <button id="checkoutBtn" onclick="addToCart()" style="padding:10px 18px; border:1px solid #1a1a1a; background:#1a1a1a; color:#f4efe6; cursor:pointer; opacity:0.4;" disabled>
           CHECKOUT
         </button>
       </div>
 
-      <div class="material">SIZE UP IF IN BETWEEN SIZES<br>100% COTTON</div>
-      <div class="shipping-note">Free shipping on NYC orders</div>
+      <div class="material">
+        SIZE UP IF IN BETWEEN SIZES<br>
+        100% COTTON
+      </div>
+
+      <div class="shipping-note">Free NYC hand delivery</div>
       <div class="shipping-note">Ships week of Feb 16th</div>
       <div class="shipping-note">
         Returns accepted for damaged or incorrect items within 7 days of delivery.
@@ -225,17 +221,17 @@ footer {
 
       <div class="authors-note">
         <strong style="display:block; margin-bottom:8px;">AUTHOR'S NOTE</strong>
-        Misfire wasn’t mapped out in advance. It came together over a month as a way to express something I couldn’t fully explain at the time. It reflects what happens when a connection shifts and you’re left adjusting to what’s different, and the process moved the same way — restarts, second guesses, long nights figuring it out. Think of it like a mixtape made during the feeling, not after it was resolved. Misfire stands as a record of that moment, and from here the direction is steadier — the search for Armistice continues.
+        Misfire wasn’t mapped out in advance. It came together over a month as a way to express something I couldn’t fully explain at the time. It reflects what happens when a connection shifts and you’re left adjusting to what’s different. Think of it like a mixtape made during the feeling, not after it was resolved.
       </div>
     </div>
   </div>
 
   <div class="files">
     <div class="file-grid">
-      <a href="sketches.html" class="file">MISFIRE_SKETCHES</a>
-      <a href="inspo.html" class="file">MISFIRE_INSPO</a>
-      <a href="process.html" class="file">MISFIRE_PROCESS</a>
-      <a href="audio.html" class="file">MISFIRE_AUDIO</a>
+      <a class='file' href='/sketches'>MISFIRE_SKETCHES</a>
+      <a class='file' href='/inspo'>MISFIRE_INSPO</a>
+      <a class='file' href='/process'>MISFIRE_PROCESS</a>
+      <a class='file' href='/audio'>MISFIRE_AUDIO</a>
     </div>
   </div>
 
@@ -245,6 +241,7 @@ footer {
 </div>
 
 <script>
+// IMAGE SLIDER
 const images = [
   "images/misfire.nateshot.png",
   "images/misfirefront.png",
@@ -268,41 +265,24 @@ function prevImage() {
   showImage(currentIndex);
 }
 
-let startX = 0;
-let endX = 0;
-const imageElement = document.getElementById('mainImage');
-
-imageElement.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
-
-imageElement.addEventListener('touchmove', (e) => {
-  endX = e.touches[0].clientX;
-});
-
-imageElement.addEventListener('touchend', () => {
-  if (startX - endX > 50) nextImage();
-  if (endX - startX > 50) prevImage();
-});
-
+// SIZE SELECTION
 let selectedVariant = null;
 
-function selectSize(variantId, el) {
+function selectSize(variantId, element) {
   selectedVariant = variantId;
 
   document.querySelectorAll('.sizes button').forEach(btn => {
-    btn.style.background = 'transparent';
-    btn.style.color = '#1a1a1a';
+    btn.classList.remove('active');
   });
 
-  el.style.background = '#1a1a1a';
-  el.style.color = '#f4efe6';
+  element.classList.add('active');
 
-  const btn = document.getElementById('addToCartBtn');
+  const btn = document.getElementById('checkoutBtn');
   btn.disabled = false;
   btn.style.opacity = '1';
 }
 
+// CHECKOUT (LIVE PRODUCTION VERSION)
 function addToCart() {
   if (!selectedVariant) return;
 
@@ -323,11 +303,10 @@ function addToCart() {
     return response.json();
   })
   .then(() => {
-    // Go directly to checkout
     window.location.href = 'https://misfire-project-001.myshopify.com/checkout';
   })
   .catch(() => {
-    // Fallback → direct checkout URL method
+    // Fallback direct checkout URL
     window.location.href = `https://misfire-project-001.myshopify.com/cart/${selectedVariant}:1?checkout`;
   });
 }
