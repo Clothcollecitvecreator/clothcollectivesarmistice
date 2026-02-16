@@ -107,6 +107,18 @@ h1 {
   color: #f4efe6;
 }
 
+/* SOLD OUT STYLE */
+.sizes button.sold-out {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.sizes button.sold-out:hover {
+  background: transparent;
+  color: #1a1a1a;
+}
+
 .shipping-note {
   font-size: 13px;
   margin-top: 6px;
@@ -199,7 +211,7 @@ footer {
         <button onclick="selectSize('49360194765037', this)">S</button>
         <button onclick="selectSize('49360194797805', this)">M</button>
         <button onclick="selectSize('49360194830573', this)">L</button>
-        <button onclick="selectSize('49360194863341', this)">XL</button>
+        <button class="sold-out" disabled>XL</button>
       </div>
 
       <div style="margin-top:18px;">
@@ -241,7 +253,6 @@ footer {
 </div>
 
 <script>
-// IMAGE SLIDER
 const images = [
   "images/misfire.nateshot.png",
   "images/misfirefront.png",
@@ -265,7 +276,6 @@ function prevImage() {
   showImage(currentIndex);
 }
 
-// SIZE SELECTION
 let selectedVariant = null;
 
 function selectSize(variantId, element) {
@@ -282,7 +292,6 @@ function selectSize(variantId, element) {
   btn.style.opacity = '1';
 }
 
-// CHECKOUT (LIVE PRODUCTION VERSION)
 function addToCart() {
   if (!selectedVariant) return;
 
@@ -297,16 +306,13 @@ function addToCart() {
     })
   })
   .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
+    if (!response.ok) throw new Error();
     return response.json();
   })
   .then(() => {
     window.location.href = 'https://misfire-project-001.myshopify.com/checkout';
   })
   .catch(() => {
-    // Fallback direct checkout URL
     window.location.href = `https://misfire-project-001.myshopify.com/cart/${selectedVariant}:1?checkout`;
   });
 }
@@ -314,3 +320,4 @@ function addToCart() {
 
 </body>
 </html>
+
