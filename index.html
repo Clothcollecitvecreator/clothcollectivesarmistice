@@ -204,10 +204,10 @@ footer {
 
   <div class="files">
     <div class="file-grid">
-      <a class='file' href='#'>MISFIRE_SKETCHES</a>
-      <a class='file' href='#'>MISFIRE_INSPO</a>
-      <a class='file' href='#'>MISFIRE_PROCESS</a>
-      <a class='file' href='#'>MISFIRE_AUDIO</a>
+      <a class='file' href='/sketches'>MISFIRE_SKETCHES</a>
+      <a class='file' href='/inspo'>MISFIRE_INSPO</a>
+      <a class='file' href='/process'>MISFIRE_PROCESS</a>
+      <a class='file' href='/audio'>MISFIRE_AUDIO</a>
     </div>
   </div>
 
@@ -235,6 +235,23 @@ footer {
         btn.disabled = false;
         btn.style.cursor = "pointer";
       });
+
+      // Add checkout button if not exists
+      if (!document.getElementById("checkoutBtn")) {
+        const checkout = document.createElement("button");
+        checkout.id = "checkoutBtn";
+        checkout.innerText = "CHECKOUT";
+        checkout.style.marginTop = "15px";
+        checkout.style.padding = "8px 16px";
+        checkout.style.border = "1px solid #1a1a1a";
+        checkout.style.background = "#1a1a1a";
+        checkout.style.color = "#f4efe6";
+        checkout.style.cursor = "pointer";
+        checkout.onclick = function() {
+          window.location.href = "https://misfire-project-001.myshopify.com/checkout";
+        };
+        document.querySelector(".sizes").after(checkout);
+      }
     } else {
       message.innerHTML = "Incorrect password.";
     }
